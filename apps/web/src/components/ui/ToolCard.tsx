@@ -23,6 +23,8 @@ const CATEGORY_BADGE_COLORS: Record<ToolCategory, string> = {
     "bg-teal-50 text-teal-700 border-teal-200 dark:bg-teal-900/30 dark:text-teal-300 dark:border-teal-700/50",
   finance:
     "bg-amber-50 text-amber-700 border-amber-200 dark:bg-amber-900/30 dark:text-amber-300 dark:border-amber-700/50",
+  pdf:
+    "bg-red-50 text-red-700 border-red-200 dark:bg-red-900/30 dark:text-red-300 dark:border-red-700/50",
 };
 
 export function ToolCard({ tool, className }: ToolCardProps) {

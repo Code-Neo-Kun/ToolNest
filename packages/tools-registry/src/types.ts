@@ -4,7 +4,8 @@ export type ToolCategory =
   | "developer"
   | "seo"
   | "utility"
-  | "finance";
+  | "finance"
+  | "pdf";
 
 export type ToolPattern =
   | "calculator"

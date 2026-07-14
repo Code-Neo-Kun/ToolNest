@@ -214,6 +214,47 @@ const TOOL_LOADERS: Record<string, () => Promise<ToolComponent>> = {
     import("@/components/tools/utility/RandomGeneratorsTool").then(
       (mod) => mod.RandomGeneratorsTool,
     ),
+  // ── PDF Tools ─────────────────────────────────────────────────────────────
+  "@/components/tools/pdf/PdfMergeTool": () =>
+    import("@/components/tools/pdf/PdfMergeTool").then(
+      (mod) => mod.PdfMergeTool,
+    ),
+  "@/components/tools/pdf/PdfSplitTool": () =>
+    import("@/components/tools/pdf/PdfSplitTool").then(
+      (mod) => mod.PdfSplitTool,
+    ),
+  "@/components/tools/pdf/PdfRemovePagesTool": () =>
+    import("@/components/tools/pdf/PdfRemovePagesTool").then(
+      (mod) => mod.PdfRemovePagesTool,
+    ),
+  "@/components/tools/pdf/PdfExtractPagesTool": () =>
+    import("@/components/tools/pdf/PdfExtractPagesTool").then(
+      (mod) => mod.PdfExtractPagesTool,
+    ),
+  "@/components/tools/pdf/PdfRotateTool": () =>
+    import("@/components/tools/pdf/PdfRotateTool").then(
+      (mod) => mod.PdfRotateTool,
+    ),
+  "@/components/tools/pdf/PdfPageNumbersTool": () =>
+    import("@/components/tools/pdf/PdfPageNumbersTool").then(
+      (mod) => mod.PdfPageNumbersTool,
+    ),
+  "@/components/tools/pdf/PdfWatermarkTool": () =>
+    import("@/components/tools/pdf/PdfWatermarkTool").then(
+      (mod) => mod.PdfWatermarkTool,
+    ),
+  "@/components/tools/pdf/PdfCropTool": () =>
+    import("@/components/tools/pdf/PdfCropTool").then(
+      (mod) => mod.PdfCropTool,
+    ),
+  "@/components/tools/pdf/JpgToPdfTool": () =>
+    import("@/components/tools/pdf/JpgToPdfTool").then(
+      (mod) => mod.JpgToPdfTool,
+    ),
+  "@/components/tools/pdf/PdfOrganizeTool": () =>
+    import("@/components/tools/pdf/PdfOrganizeTool").then(
+      (mod) => mod.PdfOrganizeTool,
+    ),
 };
 
 export default function ToolRenderer({ componentPath }: ToolRendererProps) {

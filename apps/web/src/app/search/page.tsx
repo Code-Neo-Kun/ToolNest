@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { searchTools } from "@/lib/tools-registry";
 import { ToolCard } from "@/components/ui/ToolCard";
+import { SearchBox } from "@/components/ui/SearchBox";
 import Link from "next/link";
-import { Search } from "lucide-react";
 
 interface Props {
   searchParams: Promise<{ q?: string }>;
@@ -18,8 +18,6 @@ export async function generateMetadata({
     description: query
       ? `Free online tool search results for "${query}" on ToolNest.`
       : "Search 50+ free online tools on ToolNest — images, text, developer utilities, SEO, and more.",
-    // Canonical always points to /search without the query — search result
-    // pages should never be indexed with parameters in the URL.
     alternates: {
       canonical: "/search",
     },
@@ -34,21 +32,13 @@ export default async function SearchPage({ searchParams }: Props) {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
-      <div className="mb-8">
-        <form action="/search" method="GET">
-          <div className="relative max-w-xl">
-            <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-            <input
-              name="q"
-              type="search"
-              defaultValue={query}
-              placeholder="Search for a tool..."
-              className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-sm shadow-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
-              aria-label="Search tools"
-              autoFocus
-            />
-          </div>
-        </form>
+      {/* Search box with live suggestions */}
+      <div className="mb-8 max-w-xl">
+        <SearchBox
+          autoFocus
+          defaultValue={query}
+          placeholder="Search for a tool..."
+        />
       </div>
 
       {query ? (

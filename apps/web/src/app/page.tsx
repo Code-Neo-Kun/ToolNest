@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Search, ArrowRight, Zap, Shield, Globe } from "lucide-react";
+import { ArrowRight, Zap, Shield, Globe } from "lucide-react";
 import { TOOLS, CATEGORIES, getPopularTools } from "@/lib/tools-registry";
 import { ToolCard } from "@/components/ui/ToolCard";
+import { SearchBox } from "@/components/ui/SearchBox";
 
 export const metadata: Metadata = {
   // Title omits the template suffix — this IS the homepage, use the full brand name.
@@ -76,28 +77,11 @@ export default function HomePage() {
           </p>
 
           {/* Search */}
-          <form
-            className="mt-8 mx-auto flex max-w-lg gap-2"
-            action="/search"
-            method="GET"
-          >
-            <div className="relative flex-1">
-              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-              <input
-                name="q"
-                type="search"
-                placeholder={`Search ${TOOLS.length}+ tools...`}
-                className="w-full rounded-xl border border-slate-200 bg-white py-3 pl-10 pr-4 text-sm shadow-sm outline-none transition focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
-                aria-label="Search tools"
-              />
-            </div>
-            <button
-              type="submit"
-              className="rounded-xl bg-indigo-600 px-5 py-3 text-sm font-semibold text-white hover:bg-indigo-700 transition-colors"
-            >
-              Search
-            </button>
-          </form>
+          <SearchBox
+            showButton
+            className="mt-8 mx-auto max-w-lg"
+            placeholder={`Search ${TOOLS.length}+ tools...`}
+          />
 
           {/* Quick links */}
           <div className="mt-5 flex flex-wrap items-center justify-center gap-2 text-sm text-slate-500">

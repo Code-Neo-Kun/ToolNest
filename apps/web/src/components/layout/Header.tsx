@@ -1,52 +1,12 @@
 "use client";
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
-import { Search, Menu, X, Wrench, Coffee } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { CATEGORIES, searchTools } from "@/lib/tools-registry";
+import { useState } from "react";
+import { Menu, X, Wrench, Coffee } from "lucide-react";
+import { CATEGORIES } from "@/lib/tools-registry";
+import { SearchBox } from "@/components/ui/SearchBox";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [searchFocused, setSearchFocused] = useState(false);
-  const blurTimeoutRef = useRef<number | null>(null);
-  const router = useRouter();
-
-  const suggestions = useMemo(() => {
-    const query = searchQuery.trim();
-    if (query.length < 3) return [];
-    return searchTools(query).slice(0, 4);
-  }, [searchQuery]);
-
-  const handleSearchFocus = () => {
-    if (blurTimeoutRef.current) {
-      window.clearTimeout(blurTimeoutRef.current);
-      blurTimeoutRef.current = null;
-    }
-    setSearchFocused(true);
-  };
-
-  const handleSearchBlur = () => {
-    blurTimeoutRef.current = window.setTimeout(() => {
-      setSearchFocused(false);
-      blurTimeoutRef.current = null;
-    }, 150);
-  };
-
-  const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Escape") {
-      setSearchFocused(false);
-    }
-  };
-
-  const isSuggestionsVisible = searchFocused && suggestions.length > 0;
-
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (searchQuery.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
-    }
-  };
 
   return (
     <header className="sticky top-0 z-50 border-b border-slate-200 bg-white/95 backdrop-blur-sm dark:border-slate-700 dark:bg-slate-900/95">
@@ -62,43 +22,12 @@ export function Header() {
             </span>
           </Link>
 
-          {/* Search */}
-          <form
-            onSubmit={handleSearch}
-            className="hidden sm:flex flex-1 max-w-md"
-          >
-            <div className="relative w-full">
-              <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-              <input
-                type="search"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                onFocus={handleSearchFocus}
-                onBlur={handleSearchBlur}
-                onKeyDown={handleSearchKeyDown}
-                placeholder="Search 50+ tools..."
-                className="w-full rounded-lg border border-slate-200 bg-slate-50 py-2 pl-9 pr-4 text-sm outline-none transition focus:border-indigo-400 focus:bg-white focus:ring-2 focus:ring-indigo-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200 dark:focus:bg-slate-800"
-                aria-label="Search tools"
-              />
-              {isSuggestionsVisible && (
-                <div className="absolute left-0 right-0 z-20 mt-1 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-900">
-                  {suggestions.map((tool) => (
-                    <Link
-                      key={tool.slug}
-                      href={`/tools/${tool.slug}`}
-                      onClick={() => setSearchQuery("")}
-                      className="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
-                    >
-                      {tool.name}
-                      <span className="ml-2 text-xs text-slate-400">
-                        {tool.category}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              )}
-            </div>
-          </form>
+          {/* Desktop search */}
+          <SearchBox
+            size="sm"
+            placeholder="Search tools..."
+            className="hidden sm:block flex-1 max-w-md"
+          />
 
           {/* Nav */}
           <nav
@@ -150,38 +79,11 @@ export function Header() {
       {menuOpen && (
         <div className="md:hidden border-t border-slate-200 bg-white dark:border-slate-700 dark:bg-slate-900">
           <div className="px-4 py-3 space-y-1">
-            <form onSubmit={handleSearch} className="mb-3">
-              <div className="relative">
-                <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-slate-400" />
-                <input
-                  type="search"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  onFocus={handleSearchFocus}
-                  onBlur={handleSearchBlur}
-                  onKeyDown={handleSearchKeyDown}
-                  placeholder="Search tools..."
-                  className="w-full rounded-lg border border-slate-200 bg-slate-50 py-2 pl-9 pr-4 text-sm outline-none focus:border-indigo-400 focus:ring-2 focus:ring-indigo-100 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
-                />
-                {isSuggestionsVisible && (
-                  <div className="absolute left-0 right-0 z-20 mt-1 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-lg dark:border-slate-700 dark:bg-slate-900">
-                    {suggestions.map((tool) => (
-                      <Link
-                        key={tool.slug}
-                        href={`/tools/${tool.slug}`}
-                        onClick={() => setSearchQuery("")}
-                        className="block px-4 py-3 text-sm text-slate-700 hover:bg-slate-100 dark:text-slate-200 dark:hover:bg-slate-800"
-                      >
-                        {tool.name}
-                        <span className="ml-2 text-xs text-slate-400">
-                          {tool.category}
-                        </span>
-                      </Link>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </form>
+            {/* Mobile search */}
+            <div className="mb-3">
+              <SearchBox size="sm" placeholder="Search tools..." />
+            </div>
+
             {Object.entries(CATEGORIES).map(([key, cat]) => (
               <Link
                 key={key}

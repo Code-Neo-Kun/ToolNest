@@ -135,7 +135,7 @@ export function JpgToPdfTool() {
             "No hard limit, but very large images may be slow to process in the browser.",
         },
         {
-          question: "What does "Fit to image" page size do?",
+          question: 'What does "Fit to image" page size do?',
           answer:
             "Each page is sized exactly to the image dimensions, with no white borders.",
         },

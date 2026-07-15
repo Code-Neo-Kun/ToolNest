@@ -93,7 +93,7 @@ export function PdfRotateTool() {
         {
           question: "Can I rotate only some pages?",
           answer:
-            "Yes — choose "Selected pages" and click the page numbers you want to rotate.",
+            'Yes — choose "Selected pages" and click the page numbers you want to rotate.',
         },
         {
           question: "Will the rotation be permanent?",

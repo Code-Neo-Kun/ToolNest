@@ -123,9 +123,9 @@ export function ToolLayout({
     ],
   };
 
-  const schemas = [webAppSchema, breadcrumbSchema];
-  if (howToSchema) schemas.push(howToSchema as typeof webAppSchema);
-  if (faqSchema) schemas.push(faqSchema as typeof webAppSchema);
+  const schemas: object[] = [webAppSchema, breadcrumbSchema];
+  if (howToSchema) schemas.push(howToSchema);
+  if (faqSchema) schemas.push(faqSchema);
 
   return (
     <>

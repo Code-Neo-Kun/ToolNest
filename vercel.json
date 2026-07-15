@@ -1,0 +1,6 @@
+{
+  "buildCommand": "npm run build --workspace @neotools/web",
+  "outputDirectory": "apps/web/.next",
+  "installCommand": "npm install",
+  "framework": "nextjs"
+}

@@ -1,10 +1,21 @@
 "use client";
 import { useState } from "react";
+import { CopyButton } from "@/components/ui/CopyButton";
 import { ToolLayout } from "@/components/layout/ToolLayout";
 import { FileUploader } from "@/components/ui/FileUploader";
 import { getToolBySlug } from "@/lib/tools-registry";
 
 const tool = getToolBySlug("color-palette-extractor")!;
+
+function rgbToHex(r: number, g: number, b: number) {
+  return (
+    "#" +
+    [r, g, b]
+      .map((v) => v.toString(16).padStart(2, "0"))
+      .join("")
+      .toUpperCase()
+  );
+}
 
 function getDominantColors(image: HTMLImageElement, count: number) {
   const canvas = document.createElement("canvas");
@@ -30,7 +41,7 @@ function getDominantColors(image: HTMLImageElement, count: number) {
     .slice(0, count)
     .map(([key]) => {
       const [r, g, b] = key.split(",").map(Number);
-      return `rgb(${r}, ${g}, ${b})`;
+      return rgbToHex(r, g, b);
     });
 }
 
@@ -120,17 +131,18 @@ export function ColorPaletteExtractorTool() {
               Palette
             </div>
             <div className="grid gap-3 sm:grid-cols-3">
-              {colors.map((color) => (
-                <div
-                  key={color}
-                  className="rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700"
-                >
-                  <div className="h-24" style={{ backgroundColor: color }} />
-                  <div className="p-3 text-sm text-slate-700 dark:text-slate-200">
-                    {color}
+                {colors.map((color) => (
+                  <div
+                    key={color}
+                    className="rounded-3xl overflow-hidden border border-slate-200 dark:border-slate-700"
+                  >
+                    <div className="h-24" style={{ backgroundColor: color }} />
+                    <div className="p-3 flex items-center justify-between gap-2">
+                      <div className="text-sm text-slate-700 dark:text-slate-200 font-mono">{color}</div>
+                      <CopyButton text={color} />
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         )}

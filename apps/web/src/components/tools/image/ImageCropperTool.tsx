@@ -63,7 +63,7 @@ export function ImageCropperTool() {
       tool={tool}
       howToUse={[
         "Upload an image to crop.",
-        "Set the crop coordinates and size.",
+        "Set the crop coordinates and square size (width = height).",
         "Generate the cropped image and download it.",
       ]}
       faqs={[
@@ -113,7 +113,7 @@ export function ImageCropperTool() {
             />
           </label>
           <label className="block text-sm text-slate-600 dark:text-slate-300">
-            Crop Size
+            Crop Size (square)
             <input
               type="number"
               min={16}

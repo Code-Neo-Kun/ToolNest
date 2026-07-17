@@ -95,9 +95,14 @@ export function FindReplaceTool() {
           </pre>
         </div>
 
-        <Button onClick={() => {}} className="w-full">
-          Save Result
-        </Button>
+        <div className="flex gap-2">
+          <Button onClick={() => navigator.clipboard.writeText(result)} variant="secondary" className="flex-1" disabled={!result}>
+            Copy Result
+          </Button>
+          <Button onClick={() => { setText(result); }} className="flex-1" disabled={!result || result === text}>
+            Apply to Input
+          </Button>
+        </div>
       </div>
     </ToolLayout>
   );

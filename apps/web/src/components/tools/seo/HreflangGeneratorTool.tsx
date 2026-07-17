@@ -17,15 +17,21 @@ export function HreflangGeneratorTool() {
       .split(",")
       .map((item) => item.trim())
       .filter(Boolean)
-      .map((item) => item.split(":", 2))
-      .filter((parts) => parts.length === 2)
-      .map(
-        ([lang, url]) =>
-          `<link rel=\"alternate\" href=\"${url.trim()}\" hreflang=\"${lang.trim()}\" />`,
+      .map((item): { lang: string; url: string } | null => {
+        const idx = item.indexOf(":");
+        if (idx === -1) return null;
+        const lang = item.slice(0, idx).trim();
+        const url = item.slice(idx + 1).trim();
+        if (!lang || !url) return null;
+        return { lang, url };
+      })
+      .filter((x): x is { lang: string; url: string } => x !== null)
+      .map(({ lang, url }) =>
+        `<link rel="alternate" href="${url}" hreflang="${lang}" />`,
       );
 
     return [
-      `<link rel=\"alternate\" href=\"${defaultUrl}\" hreflang=\"x-default\" />`,
+      `<link rel="alternate" href="${defaultUrl}" hreflang="x-default" />`,
       ...entries,
     ].join("\n");
   }, [defaultUrl, languages]);

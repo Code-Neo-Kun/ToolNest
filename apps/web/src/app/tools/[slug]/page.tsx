@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { TOOLS, getToolBySlug } from "@/lib/tools-registry";
+import { TOOL_SEO } from "@/lib/tool-seo-data";
 import ToolRenderer from "@/components/tools/ToolRenderer";
 import { ComingSoonTool } from "@/components/tools/ComingSoonTool";
 
@@ -17,26 +18,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const tool = getToolBySlug(slug);
   if (!tool) return {};
 
-  // Build a richer description that includes the keyword context Google likes.
-  const keywordSuffix =
-    tool.keywords.length > 0
-      ? ` Keywords: ${tool.keywords.slice(0, 4).join(", ")}.`
-      : "";
-  const description =
-    `${tool.description} Free, instant results in your browser — no signup required.${keywordSuffix}`.slice(
-      0,
-      160,
-    );
+  const seo = TOOL_SEO[slug];
+
+  // Use hand-crafted SEO copy when available; fall back to dynamic generation.
+  const title = seo?.metaTitle ?? `${tool.name} — Free Online Tool | ToolNest`;
+  const rawDescription = seo?.metaDescription
+    ?? `${tool.description} Free, instant results in your browser — no signup required.`;
+  const description = rawDescription.slice(0, 160);
 
   return {
-    title: `${tool.name} — Free Online Tool`,
+    title,
     description,
     keywords: tool.keywords,
     alternates: {
       canonical: `/tools/${tool.slug}`,
     },
     openGraph: {
-      title: `${tool.name} — Free Online Tool`,
+      title,
       description,
       type: "website",
       images: [

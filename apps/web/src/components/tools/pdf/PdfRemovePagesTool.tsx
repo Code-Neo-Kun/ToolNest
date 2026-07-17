@@ -6,7 +6,7 @@ import { FileUploader } from "@/components/ui/FileUploader";
 import { Button } from "@/components/ui/Button";
 import { getToolBySlug } from "@/lib/tools-registry";
 import { downloadBlob } from "@/lib/utils";
-import { Download, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 
 const tool = getToolBySlug("pdf-remove-pages")!;
 
@@ -139,18 +139,6 @@ export function PdfRemovePagesTool() {
             Remove {selected.size > 0 ? selected.size : ""} Selected Page
             {selected.size !== 1 ? "s" : ""}
           </Button>
-
-          {selected.size > 0 && (
-            <Button
-              onClick={removePages}
-              loading={loading}
-              disabled={selected.size === 0}
-              className="w-full"
-            >
-              <Download className="h-4 w-4" />
-              Download Result
-            </Button>
-          )}
         </div>
       )}
     </ToolLayout>

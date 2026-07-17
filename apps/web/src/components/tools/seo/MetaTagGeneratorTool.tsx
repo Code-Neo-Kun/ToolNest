@@ -20,29 +20,37 @@ export function MetaTagGeneratorTool() {
 
   const set = (key: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) =>
     setForm((f) => ({ ...f, [key]: e.target.value }));
+  function escapeHtml(s: string) {
+    return s
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/\"/g, "&quot;")
+      .replace(/'/g, "&#39;");
+  }
 
   const tags = `<!-- Primary Meta Tags -->
-<title>${form.title}</title>
-<meta name="title" content="${form.title}" />
-<meta name="description" content="${form.description}" />
-${form.keywords ? `<meta name="keywords" content="${form.keywords}" />` : ""}
-${form.author ? `<meta name="author" content="${form.author}" />` : ""}
-<meta name="robots" content="${form.robots}" />
+<title>${escapeHtml(form.title)}</title>
+<meta name="title" content="${escapeHtml(form.title)}" />
+<meta name="description" content="${escapeHtml(form.description)}" />
+${form.keywords ? `<meta name="keywords" content="${escapeHtml(form.keywords)}" />` : ""}
+${form.author ? `<meta name="author" content="${escapeHtml(form.author)}" />` : ""}
+<meta name="robots" content="${escapeHtml(form.robots)}" />
 
 <!-- Open Graph / Facebook -->
 <meta property="og:type" content="website" />
-${form.url ? `<meta property="og:url" content="${form.url}" />` : ""}
-<meta property="og:title" content="${form.title}" />
-<meta property="og:description" content="${form.description}" />
-${form.image ? `<meta property="og:image" content="${form.image}" />` : ""}
+${form.url ? `<meta property="og:url" content="${escapeHtml(form.url)}" />` : ""}
+<meta property="og:title" content="${escapeHtml(form.title)}" />
+<meta property="og:description" content="${escapeHtml(form.description)}" />
+${form.image ? `<meta property="og:image" content="${escapeHtml(form.image)}" />` : ""}
 
 <!-- Twitter -->
 <meta property="twitter:card" content="summary_large_image" />
-${form.url ? `<meta property="twitter:url" content="${form.url}" />` : ""}
-<meta property="twitter:title" content="${form.title}" />
-<meta property="twitter:description" content="${form.description}" />
-${form.image ? `<meta property="twitter:image" content="${form.image}" />` : ""}
-${form.twitterHandle ? `<meta property="twitter:creator" content="${form.twitterHandle}" />` : ""}`.trim();
+${form.url ? `<meta property="twitter:url" content="${escapeHtml(form.url)}" />` : ""}
+<meta property="twitter:title" content="${escapeHtml(form.title)}" />
+<meta property="twitter:description" content="${escapeHtml(form.description)}" />
+${form.image ? `<meta property="twitter:image" content="${escapeHtml(form.image)}" />` : ""}
+${form.twitterHandle ? `<meta property="twitter:creator" content="${escapeHtml(form.twitterHandle)}" />` : ""}`.trim();
 
   const titleLen = form.title.length;
   const descLen = form.description.length;

@@ -26,6 +26,13 @@ export function WorldClockTool() {
   const [targetZone, setTargetZone] = useState("UTC");
   const [time, setTime] = useState(new Date());
 
+  const timezoneOptions = useMemo(() => {
+    // Ensure the user's detected timezone appears in the list so the select shows it
+    const detected = Intl.DateTimeFormat().resolvedOptions().timeZone ?? "UTC";
+    if (timezones.includes(detected)) return timezones;
+    return [detected, ...timezones];
+  }, []);
+
   useEffect(() => {
     const interval = window.setInterval(() => setTime(new Date()), 1000);
     return () => window.clearInterval(interval);
@@ -87,7 +94,7 @@ export function WorldClockTool() {
               onChange={(e) => setSourceZone(e.target.value)}
               className="mt-2 w-full rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
             >
-              {timezones.map((zone) => (
+              {timezoneOptions.map((zone) => (
                 <option key={zone} value={zone}>
                   {zone}
                 </option>
@@ -102,7 +109,7 @@ export function WorldClockTool() {
               onChange={(e) => setTargetZone(e.target.value)}
               className="mt-2 w-full rounded-3xl border border-slate-200 bg-slate-50 px-4 py-3 text-sm text-slate-800 outline-none dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
             >
-              {timezones.map((zone) => (
+              {timezoneOptions.map((zone) => (
                 <option key={zone} value={zone}>
                   {zone}
                 </option>

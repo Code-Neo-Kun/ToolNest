@@ -6,11 +6,12 @@ import { getToolBySlug } from "@/lib/tools-registry";
 
 const tool = getToolBySlug("semver-comparator")!;
 
-function parseVersion(value: string) {
-  return value
-    .trim()
-    .split(".")
-    .map((part) => Number(part) || 0);
+function parseVersion(value: string): number[] | null {
+  const parts = value.trim().split(".");
+  if (parts.length === 0) return null;
+  // Validate that each segment is a non-negative integer
+  if (!parts.every((p) => /^[0-9]+$/.test(p))) return null;
+  return parts.map((part) => Number(part));
 }
 
 export function SemverComparatorTool() {
@@ -20,6 +21,7 @@ export function SemverComparatorTool() {
   const result = useMemo(() => {
     const a = parseVersion(versionA);
     const b = parseVersion(versionB);
+    if (!a || !b) return "Invalid version format";
     for (let i = 0; i < Math.max(a.length, b.length); i += 1) {
       const diff = (a[i] ?? 0) - (b[i] ?? 0);
       if (diff > 0) return "A is newer";

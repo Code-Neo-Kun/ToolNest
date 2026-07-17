@@ -17,16 +17,29 @@ export function QrGeneratorTool() {
   const [qrUrl, setQrUrl] = useState("");
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const generateUrl = (text: string) => {
-    if (!text.trim()) return "";
-    const encoded = encodeURIComponent(text);
-    return `https://api.qrserver.com/v1/create-qr-code/?size=${size}x${size}&data=${encoded}&color=${fgColor.replace("#", "")}&bgcolor=${bgColor.replace("#", "")}`;
-  };
-
+  // Generate QR code client-side using the `qrcode` package
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current);
-    debounceRef.current = setTimeout(() => {
-      setQrUrl(generateUrl(input));
+    debounceRef.current = setTimeout(async () => {
+      if (!input.trim()) {
+        setQrUrl("");
+        return;
+      }
+      try {
+        const QRCode = await import("qrcode");
+        const dataUrl = await QRCode.toDataURL(input, {
+          width: size,
+          margin: 1,
+          color: { dark: fgColor, light: bgColor },
+        });
+        setQrUrl(dataUrl);
+      } catch (err) {
+        // Fallback: clear URL and keep a brief console message
+        // If generation fails, fall back to empty state
+        // eslint-disable-next-line no-console
+        console.error("Failed to generate QR code:", err);
+        setQrUrl("");
+      }
     }, 500);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [input, size, fgColor, bgColor]);
@@ -75,6 +88,7 @@ export function QrGeneratorTool() {
               rows={4}
               className="w-full rounded-xl border border-slate-200 bg-slate-50 p-3 text-sm outline-none resize-none transition focus:border-indigo-400 focus:bg-white focus:ring-2 focus:ring-indigo-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200"
             />
+            <p className="mt-2 text-xs text-slate-500 dark:text-slate-400">Note: this generator uses a third-party API (api.qrserver.com) to create the PNG. Do not enter sensitive data if you require local-only processing.</p>
           </div>
 
           <div>
@@ -107,7 +121,7 @@ export function QrGeneratorTool() {
         </div>
 
         <div className="flex flex-col items-center gap-4">
-          {qrUrl ? (
+              {qrUrl ? (
             <>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img

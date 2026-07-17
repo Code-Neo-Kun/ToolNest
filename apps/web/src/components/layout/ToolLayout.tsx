@@ -6,6 +6,7 @@ import {
   CATEGORIES,
   getRelatedTools,
 } from "@/lib/tools-registry";
+import { TOOL_SEO } from "@/lib/tool-seo-data";
 import { ToolCard } from "@/components/ui/ToolCard";
 import { cn } from "@/lib/utils";
 
@@ -37,18 +38,30 @@ interface ToolLayoutProps {
   children: React.ReactNode;
   howToUse?: string[];
   faqs?: FAQItem[];
+  /** "Why use this" paragraph naming 2–3 concrete user types — shown above How-to section */
+  whyUse?: string;
   className?: string;
 }
 
 export function ToolLayout({
   tool,
   children,
-  howToUse,
-  faqs,
+  howToUse: howToUseProp,
+  faqs: faqsProp,
+  whyUse: whyUseProp,
   className,
 }: ToolLayoutProps) {
   const category = CATEGORIES[tool.category];
   const relatedTools = getRelatedTools(tool, 4);
+
+  // Merge per-tool SEO data (from data file) with any inline props.
+  // Inline props take precedence so individual tools can still override.
+  const seo = TOOL_SEO[tool.slug];
+  const howToUse = howToUseProp ?? seo?.howToUse;
+  const faqs = faqsProp ?? seo?.faqs;
+  const whyUse = whyUseProp ?? seo?.whyUse;
+  const h2 = seo?.h2 ?? `Free Online ${tool.name}`;
+  const intro = seo?.intro ?? tool.description;
 
   const faqSchema = faqs
     ? {
@@ -194,10 +207,25 @@ export function ToolLayout({
 
         {/* How to use */}
         {howToUse && howToUse.length > 0 && (
-          <section className="mt-10">
-            <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
+          <section className="mt-10" aria-label="How to use">
+            {/* SEO content block — visible copy for search snippet & rich results */}
+            <div className="mb-6 rounded-xl border border-slate-100 bg-slate-50 px-5 py-5 dark:border-slate-700/60 dark:bg-slate-800/40">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
+                {h2}
+              </h2>
+              <p className="text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                {intro}
+              </p>
+              {whyUse && (
+                <p className="mt-3 text-sm text-slate-600 dark:text-slate-400 leading-relaxed">
+                  {whyUse}
+                </p>
+              )}
+            </div>
+
+            <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-4">
               How to Use
-            </h2>
+            </h3>
             <ol className="space-y-3">
               {howToUse.map((step, i) => (
                 <li key={i} className="flex gap-3">

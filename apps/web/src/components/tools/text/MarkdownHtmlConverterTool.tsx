@@ -15,9 +15,11 @@ export function MarkdownHtmlConverterTool() {
   const [output, setOutput] = useState("");
   const [mode, setMode] = useState<"md-to-html" | "html-to-md">("md-to-html");
 
-  const convert = () => {
+  const convert = async () => {
     if (mode === "md-to-html") {
-      setOutput(marked(input));
+      // marked() returns string | Promise<string> depending on version/config
+      const result = await Promise.resolve(marked(input));
+      setOutput(result as string);
     } else {
       setOutput(turndownService.turndown(input));
     }

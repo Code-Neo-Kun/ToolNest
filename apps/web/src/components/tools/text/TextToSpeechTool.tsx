@@ -16,16 +16,16 @@ export function TextToSpeechTool() {
     const updateVoices = () => {
       const available = window.speechSynthesis.getVoices();
       setVoices(available);
-      if (available.length > 0 && !selected) {
-        setSelected(available[0].name);
-      }
+      setSelected((prev) => prev || (available[0]?.name ?? ""));
     };
     updateVoices();
     window.speechSynthesis.onvoiceschanged = updateVoices;
     return () => {
       window.speechSynthesis.onvoiceschanged = null;
     };
-  }, [selected]);
+    // Run once on mount
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const speak = () => {
     if (!text.trim()) return;

@@ -16,9 +16,11 @@ export function CronExpressionParserTool() {
     try {
       setError(null);
       const interval = parser.parseExpression(expression);
+      // Collect next 5 runs first, then the first of those is "next run"
+      const nextFive = Array.from({ length: 5 }, () => interval.next().toString());
       return {
-        nextRun: interval.next().toString(),
-        nextFive: Array.from({ length: 5 }, () => interval.next().toString()),
+        nextRun: nextFive[0],
+        nextFive,
       };
     } catch (err) {
       setError((err as Error).message);

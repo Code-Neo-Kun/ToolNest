@@ -6,19 +6,22 @@ import { getToolBySlug } from "@/lib/tools-registry";
 const tool = getToolBySlug("age-date-difference")!;
 
 function calculateAge(birth: Date, target: Date) {
-  const diff = target.getTime() - birth.getTime();
-  const years = target.getFullYear() - birth.getFullYear();
-  const months = target.getMonth() - birth.getMonth();
-  const days = target.getDate() - birth.getDate();
+  let years = target.getFullYear() - birth.getFullYear();
+  let months = target.getMonth() - birth.getMonth();
+  let days = target.getDate() - birth.getDate();
 
-  const adjustedYears =
-    months < 0 || (months === 0 && days < 0) ? years - 1 : years;
-  const adjustedMonths = months < 0 ? months + 12 : months;
-  return {
-    years: adjustedYears,
-    months: adjustedMonths,
-    days: days < 0 ? days + 30 : days,
-  };
+  if (days < 0) {
+    months -= 1;
+    // Days in the previous month relative to target
+    const prevMonth = new Date(target.getFullYear(), target.getMonth(), 0);
+    days += prevMonth.getDate();
+  }
+  if (months < 0) {
+    years -= 1;
+    months += 12;
+  }
+
+  return { years, months, days };
 }
 
 export function AgeDateDifferenceTool() {

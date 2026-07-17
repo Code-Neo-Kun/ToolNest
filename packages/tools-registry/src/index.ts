@@ -620,8 +620,10 @@ export const TOOLS: ToolDefinition[] = [
     icon: "📝",
     keywords: ["markdown", "editor", "preview", "text"],
     pattern: "transform",
-    isFunctional: false,
+    isFunctional: true,
     requiresAuth: false,
+    componentPath: "@/components/tools/productivity/MarkdownEditorTool",
+    isNew: true,
   },
   // ── PDF Tools ──────────────────────────────────────────────────────────────
   {

@@ -1184,4 +1184,26 @@ export const TOOL_SEO: Record<string, ToolSeoData> = {
     ],
   },
 
+  // ── TEXT (continued) ───────────────────────────────────────────────────────
+
+  "markdown-editor": {
+    metaTitle: "Free Online Markdown Editor — Write & Preview Markdown | ToolNest",
+    metaDescription: "Write, preview, and export Markdown in your browser for free. Live side-by-side preview, word count, and download as .md or .html. No signup.",
+    h2: "Free Online Markdown Editor",
+    intro: "Write Markdown and see a live preview side by side — entirely in your browser with no upload to any server and no account required. Download your document as .md or .html in one click.",
+    howToUse: [
+      "Type or paste your Markdown in the left editor pane.",
+      "The preview pane on the right updates in real time.",
+      "Use Clean to strip trailing whitespace, or Clear to start fresh.",
+      "Download your document as .md (Markdown source) or .html (rendered page).",
+    ],
+    whyUse: "Bloggers draft and preview posts before pasting into their CMS. Developers write README files with a live preview before committing. Technical writers compose documentation and export it as HTML for publishing.",
+    faqs: [
+      { question: "Is my content sent to a server?", answer: "No. Everything runs in your browser using the marked library. Nothing is uploaded anywhere." },
+      { question: "What Markdown syntax is supported?", answer: "CommonMark: headings, bold, italic, inline code, fenced code blocks, lists, blockquotes, links, images, and tables." },
+      { question: "Can I export my document?", answer: "Yes — click .md to download the raw Markdown source, or .html to download a complete HTML page with your rendered content." },
+      { question: "Does it auto-save my work?", answer: "There is no server-side saving. Your content persists while the browser tab stays open. For persistent storage, download a copy." },
+    ],
+  },
+
 };

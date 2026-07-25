@@ -11,14 +11,23 @@ import { CaseConverterTool } from "@/components/tools/text/CaseConverterTool";
 import { LoremIpsumTool } from "@/components/tools/text/LoremIpsumTool";
 import { SlugGeneratorTool } from "@/components/tools/text/SlugGeneratorTool";
 import { JsonFormatterTool } from "@/components/tools/developer/JsonFormatterTool";
+import { JwtDecoderTool } from "@/components/tools/developer/JwtDecoderTool";
+import { RegexTesterTool } from "@/components/tools/developer/RegexTesterTool";
 import { Base64EncoderTool } from "@/components/tools/developer/Base64EncoderTool";
 import { UrlEncoderTool } from "@/components/tools/developer/UrlEncoderTool";
 import { UuidGeneratorTool } from "@/components/tools/developer/UuidGeneratorTool";
 import { HashGeneratorTool } from "@/components/tools/developer/HashGeneratorTool";
 import { MetaTagGeneratorTool } from "@/components/tools/seo/MetaTagGeneratorTool";
 import { RobotsGeneratorTool } from "@/components/tools/seo/RobotsGeneratorTool";
+import { SitemapGeneratorTool } from "@/components/tools/seo/SitemapGeneratorTool";
+import { OgPreviewTool } from "@/components/tools/seo/OgPreviewTool";
+import { IncomeTaxCalculatorTool } from "@/components/tools/finance/IncomeTaxCalculatorTool";
+import { SipCalculatorTool } from "@/components/tools/finance/SipCalculatorTool";
+import { SalaryCalculatorTool } from "@/components/tools/finance/SalaryCalculatorTool";
+import { PdfCompressorTool } from "@/components/tools/pdf/PdfCompressorTool";
 import { PasswordGeneratorTool } from "@/components/tools/utility/PasswordGeneratorTool";
 import { QrGeneratorTool } from "@/components/tools/utility/QrGeneratorTool";
+import { QrScannerTool } from "@/components/tools/utility/QrScannerTool";
 import { ColorPickerTool } from "@/components/tools/utility/ColorPickerTool";
 import { PercentageCalculatorTool } from "@/components/tools/utility/PercentageCalculatorTool";
 
@@ -55,19 +64,28 @@ const TOOL_COMPONENTS: Record<string, React.ComponentType> = {
   "png-to-jpg": PngToJpgTool,
   "jpg-to-png": JpgToPngTool,
   "image-to-base64": ImageToBase64Tool,
+  "pdf-compressor": PdfCompressorTool,
   "word-counter": WordCounterTool,
   "case-converter": CaseConverterTool,
   "lorem-ipsum": LoremIpsumTool,
   "slug-generator": SlugGeneratorTool,
   "json-formatter": JsonFormatterTool,
+  "jwt-decoder": JwtDecoderTool,
+  "regex-tester": RegexTesterTool,
   "base64-encoder": Base64EncoderTool,
   "url-encoder": UrlEncoderTool,
   "uuid-generator": UuidGeneratorTool,
   "hash-generator": HashGeneratorTool,
   "meta-tag-generator": MetaTagGeneratorTool,
   "robots-generator": RobotsGeneratorTool,
+  "sitemap-generator": SitemapGeneratorTool,
+  "og-preview": OgPreviewTool,
+  "income-tax-calculator": IncomeTaxCalculatorTool,
+  "sip-calculator": SipCalculatorTool,
+  "salary-calculator": SalaryCalculatorTool,
   "password-generator": PasswordGeneratorTool,
   "qr-generator": QrGeneratorTool,
+  "qr-scanner": QrScannerTool,
   "color-picker": ColorPickerTool,
   "percentage-calculator": PercentageCalculatorTool,
 };

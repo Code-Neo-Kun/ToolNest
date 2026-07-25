@@ -4,7 +4,8 @@ export type ToolCategory =
   | "text"
   | "developer"
   | "seo"
-  | "utility";
+  | "utility"
+  | "finance";
 
 export interface Tool {
   slug: string;
@@ -60,8 +61,20 @@ export const TOOLS: Tool[] = [
     category: "image",
     icon: "🔤",
     keywords: ["image", "base64", "encode", "convert", "embed"],
-    isNew: true,
   },
+
+  // PDF
+  {
+    slug: "pdf-compressor",
+    name: "PDF Compress",
+    description: "Compress PDF files online to reduce document file size for free without losing readability.",
+    category: "pdf",
+    icon: "🗜️",
+    keywords: ["pdf", "compress", "reduce size", "document", "shrink"],
+    isNew: true,
+    isPopular: true,
+  },
+
   // Text
   {
     slug: "word-counter",
@@ -95,8 +108,8 @@ export const TOOLS: Tool[] = [
     category: "text",
     icon: "🔗",
     keywords: ["slug", "url", "friendly", "convert", "text"],
-    isNew: true,
   },
+
   // Developer
   {
     slug: "json-formatter",
@@ -106,6 +119,25 @@ export const TOOLS: Tool[] = [
     icon: "{ }",
     keywords: ["json", "format", "validate", "beautify", "minify"],
     isPopular: true,
+  },
+  {
+    slug: "jwt-decoder",
+    name: "JWT Decoder",
+    description: "Decode JSON Web Tokens (JWT) safely online without sending tokens to any server. View header, payload & signature.",
+    category: "developer",
+    icon: "🔑",
+    keywords: ["jwt", "decode", "token", "auth", "json web token", "bearer"],
+    isNew: true,
+    isPopular: true,
+  },
+  {
+    slug: "regex-tester",
+    name: "Regex Tester",
+    description: "Test regular expressions online with real-time match highlighting, flags, and regex cheat sheet.",
+    category: "developer",
+    icon: "🔍",
+    keywords: ["regex", "regexp", "regular expression", "test", "match"],
+    isNew: true,
   },
   {
     slug: "base64-encoder",
@@ -139,8 +171,8 @@ export const TOOLS: Tool[] = [
     category: "developer",
     icon: "#️⃣",
     keywords: ["hash", "md5", "sha", "sha256", "sha512", "encrypt"],
-    isNew: true,
   },
+
   // SEO
   {
     slug: "meta-tag-generator",
@@ -159,6 +191,56 @@ export const TOOLS: Tool[] = [
     icon: "🤖",
     keywords: ["robots", "txt", "seo", "crawl", "search engine"],
   },
+  {
+    slug: "sitemap-generator",
+    name: "Sitemap.xml Generator",
+    description: "Generate clean XML sitemaps for your website instantly to improve Google indexing.",
+    category: "seo",
+    icon: "🗺️",
+    keywords: ["sitemap", "xml", "seo", "google", "indexing"],
+    isNew: true,
+  },
+  {
+    slug: "og-preview",
+    name: "Open Graph Preview",
+    description: "Preview how your links will look when shared on Twitter/X, Facebook, LinkedIn, and Discord.",
+    category: "seo",
+    icon: "👁️",
+    keywords: ["open graph", "og", "preview", "twitter card", "social preview"],
+    isNew: true,
+  },
+
+  // Finance
+  {
+    slug: "income-tax-calculator",
+    name: "Income Tax Calculator (India)",
+    description: "Calculate your income tax in India comparing Old vs New Tax Regime for FY 2025-26 & FY 2026-27.",
+    category: "finance",
+    icon: "💰",
+    keywords: ["tax", "income tax", "india", "old regime", "new regime", "itr", "calculator"],
+    isNew: true,
+    isPopular: true,
+  },
+  {
+    slug: "sip-calculator",
+    name: "SIP Calculator",
+    description: "Calculate expected returns on your Systematic Investment Plan (SIP) in mutual funds over time.",
+    category: "finance",
+    icon: "📈",
+    keywords: ["sip", "mutual fund", "calculator", "returns", "investment", "finance"],
+    isNew: true,
+    isPopular: true,
+  },
+  {
+    slug: "salary-calculator",
+    name: "Salary / In-Hand CTC Breakdown",
+    description: "Calculate in-hand monthly salary from total CTC after PF, Professional Tax, and Income Tax deductions.",
+    category: "finance",
+    icon: "💵",
+    keywords: ["salary", "ctc", "in hand salary", "take home", "deductions", "pf"],
+    isNew: true,
+  },
+
   // Utility
   {
     slug: "password-generator",
@@ -179,13 +261,21 @@ export const TOOLS: Tool[] = [
     isPopular: true,
   },
   {
+    slug: "qr-scanner",
+    name: "QR Code Scanner",
+    description: "Scan QR codes online using your device camera or by uploading a QR image file instantly.",
+    category: "utility",
+    icon: "📷",
+    keywords: ["qr", "scan", "scanner", "reader", "camera", "decode"],
+    isNew: true,
+  },
+  {
     slug: "color-picker",
     name: "Color Picker",
     description: "Pick colors and convert between HEX, RGB, HSL color formats. Free online color tool.",
     category: "utility",
     icon: "🎨",
     keywords: ["color", "picker", "hex", "rgb", "hsl", "convert"],
-    isNew: true,
   },
   {
     slug: "percentage-calculator",
@@ -233,6 +323,12 @@ export const CATEGORIES: Record<ToolCategory, { label: string; description: stri
     description: "Password, QR codes, calculators and more",
     icon: "🛠️",
     color: "bg-teal-50 text-teal-700 border-teal-200",
+  },
+  finance: {
+    label: "Finance Tools",
+    description: "Income Tax, SIP, Salary breakdown & calculators",
+    icon: "💰",
+    color: "bg-amber-50 text-amber-700 border-amber-200",
   },
 };
 

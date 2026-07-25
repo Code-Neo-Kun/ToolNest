@@ -63,14 +63,12 @@ export function Header() {
             >
               About
             </Link>
-            <a
-              href="https://www.buymeacoffee.com/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/support"
               className="ml-1 inline-flex items-center gap-1.5 rounded-full bg-amber-400 px-3 py-1.5 text-sm font-semibold text-white hover:bg-amber-500 transition-colors"
             >
               <Coffee className="h-3.5 w-3.5" /> Support
-            </a>
+            </Link>
           </nav>
 
           {/* Mobile menu button */}
@@ -113,20 +111,26 @@ export function Header() {
               </Link>
             ))}
             <Link
+              href="/blog"
+              onClick={() => setMenuOpen(false)}
+              className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
+            >
+              📝 Blog
+            </Link>
+            <Link
               href="/about"
               onClick={() => setMenuOpen(false)}
               className="flex items-center gap-2 rounded-md px-3 py-2 text-sm text-slate-700 hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-slate-800"
             >
               👨‍💻 About
             </Link>
-            <a
-              href="https://www.buymeacoffee.com/yourusername"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/support"
+              onClick={() => setMenuOpen(false)}
               className="flex items-center gap-2 rounded-md px-3 py-2 text-sm font-semibold text-amber-600 hover:bg-amber-50 dark:text-amber-400 dark:hover:bg-amber-950/20"
             >
-              <Coffee className="h-4 w-4" /> Buy me a coffee
-            </a>
+              <Coffee className="h-4 w-4" /> Support ToolNest
+            </Link>
           </div>
         </div>
       )}

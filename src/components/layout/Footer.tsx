@@ -87,14 +87,12 @@ export function Footer() {
           <p className="text-sm text-slate-600 dark:text-slate-400">
             ToolNest is free forever. If it saves you time, a coffee keeps it alive ☕
           </p>
-          <a
-            href="https://www.buymeacoffee.com/yourusername"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="shrink-0 inline-flex items-center gap-2 rounded-full bg-amber-400 px-4 py-2 text-sm font-semibold text-white hover:bg-amber-500 transition-colors"
+          <Link
+            href="/support"
+            className="shrink-0 inline-flex items-center gap-2 rounded-full bg-amber-400 px-4 py-2 text-sm font-semibold text-slate-900 hover:bg-amber-500 transition-colors"
           >
-            <Coffee className="h-4 w-4" /> Buy me a coffee
-          </a>
+            <Coffee className="h-4 w-4" /> Support ToolNest
+          </Link>
         </div>
 
         <div className="mt-6 border-t border-slate-200 pt-6 dark:border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-3">

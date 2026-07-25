@@ -1,40 +1,45 @@
-<<<<<<< HEAD
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ToolNest — Free, Fast, Client-Side Online Tools 🛠️
 
-## Getting Started
+**ToolNest** is a privacy-first suite of online utility tools for developers, designers, content creators, and everyday web users. Every tool runs 100% locally in your browser using modern WebAssembly, Canvas API, and WebCrypto — your files and data never touch any server.
 
-First, run the development server:
+---
+
+## ⚡ Features & Key Highlights
+
+- **🔒 100% Privacy by Default**: Zero file uploads. All processing happens in-browser.
+- **🚀 Zero Signup Required**: Open any tool and use it immediately without accounts or paywalls.
+- **🖼️ 20+ High-Performance Tools**:
+  - **Image Tools**: Compressor, Resizer, PNG/JPG Converters, Image to Base64
+  - **PDF Tools**: Merge, Split, Watermark, Compress
+  - **Developer Tools**: JSON Formatter, Base64 Encoder, JWT Decoder, Regex Tester, UUID & Hash Generators
+  - **SEO Tools**: Meta Tag Generator, Robots.txt Generator, Sitemap Generator, Open Graph Preview
+  - **Finance Tools**: Income Tax Calculator (India), SIP Calculator, Salary/CTC Breakdown, GST & EMI Calculators
+  - **Text & Utility**: Word Counter, Case Converter, QR Code Generator & Scanner, Password Generator
+
+---
+
+## 🛠️ Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router, SSG, Server Components)
+- **UI & Styling**: React 19, Tailwind CSS v4, Lucide Icons
+- **Language**: TypeScript 5.8
+- **Deployment**: Vercel
+
+---
+
+## 🚀 Getting Started
+
+First, install dependencies and run the development server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) with your browser to explore ToolNest locally.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 📄 License
 
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-=======
-# ToolNest
->>>>>>> 7a6b755283f7e284ba5e35a0d50e248f76452fab
+Licensed under the [MIT License](LICENSE). Built with 💛 by [Uddhav Shrimali](https://github.com/Code-Neo-Kun).

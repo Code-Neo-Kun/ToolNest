@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ChevronRight } from "lucide-react";
 import { Tool, CATEGORIES, getRelatedTools } from "@/lib/tools-registry";
 import { ToolCard } from "@/components/ui/ToolCard";
+import { EmbedModal } from "@/components/ui/EmbedModal";
 import { cn } from "@/lib/utils";
 
 interface FAQItem {
@@ -59,11 +60,14 @@ export function ToolLayout({ tool, children, howToUse, faqs, className }: ToolLa
 
         {/* Title */}
         <div className="mb-8">
-          <div className="flex items-center gap-3 mb-3">
-            <span className="text-3xl" role="img" aria-label={tool.name}>{tool.icon}</span>
-            <span className={cn("rounded-full border px-2.5 py-0.5 text-xs font-medium", category.color)}>
-              {category.icon} {category.label}
-            </span>
+          <div className="flex items-center justify-between gap-3 mb-3 flex-wrap">
+            <div className="flex items-center gap-3">
+              <span className="text-3xl" role="img" aria-label={tool.name}>{tool.icon}</span>
+              <span className={cn("rounded-full border px-2.5 py-0.5 text-xs font-medium", category.color)}>
+                {category.icon} {category.label}
+              </span>
+            </div>
+            <EmbedModal toolSlug={tool.slug} toolName={tool.name} />
           </div>
           <h1 className="text-3xl font-bold text-slate-900 dark:text-white">{tool.name}</h1>
           <p className="mt-2 text-lg text-slate-600 dark:text-slate-400">{tool.description}</p>

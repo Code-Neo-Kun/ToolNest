@@ -26,26 +26,23 @@ export default function SupportPage() {
         <ArrowLeft className="h-4 w-4" /> Back to Home
       </Link>
 
-      {/* Header Banner Graphic */}
-      <div className="relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-900 text-white shadow-xl dark:border-slate-800 mb-10">
-        <div className="relative aspect-[21/9] w-full bg-slate-950">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/images/receive_money_image.png"
-            alt="Support ToolNest Receive Money Graphic"
-            className="h-full w-full object-cover object-center opacity-90"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent flex flex-col justify-end p-6 sm:p-8">
-            <div className="inline-flex items-center gap-2 rounded-full bg-amber-500/20 px-3 py-1 text-xs font-semibold text-amber-300 backdrop-blur-md border border-amber-400/30 w-fit mb-2">
-              <Sparkles className="h-3.5 w-3.5" /> Support ToolNest
-            </div>
-            <h1 className="text-3xl font-extrabold sm:text-4xl text-white">
-              Help Keep ToolNest Fast, Free & Private
-            </h1>
-            <p className="mt-2 text-sm sm:text-base text-slate-300 max-w-2xl">
-              Zero ads, zero data tracking, zero server uploads. Every contribution directly funds domain, hosting, and building new browser-only tools.
-            </p>
+      {/* Header Banner Graphic - High End CSS Gradient & Ambient Glow */}
+      <div className="relative overflow-hidden rounded-3xl border border-indigo-500/20 bg-gradient-to-br from-indigo-950 via-slate-900 to-purple-950 p-8 sm:p-12 text-white shadow-2xl mb-10">
+        {/* Background glow effects */}
+        <div className="pointer-events-none absolute -top-24 -right-24 h-80 w-80 rounded-full bg-indigo-500/20 blur-3xl" />
+        <div className="pointer-events-none absolute -bottom-24 -left-24 h-80 w-80 rounded-full bg-purple-500/20 blur-3xl" />
+        <div className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-64 w-64 rounded-full bg-amber-500/10 blur-3xl" />
+
+        <div className="relative z-10 max-w-2xl">
+          <div className="inline-flex items-center gap-2 rounded-full bg-amber-400/10 px-3.5 py-1 text-xs font-semibold text-amber-300 backdrop-blur-md border border-amber-400/20 mb-4">
+            <Sparkles className="h-3.5 w-3.5 text-amber-400" /> Support ToolNest
           </div>
+          <h1 className="text-3xl font-extrabold sm:text-5xl text-white tracking-tight leading-tight">
+            Help Keep ToolNest Fast, Free & Private
+          </h1>
+          <p className="mt-4 text-base sm:text-lg text-slate-300 leading-relaxed">
+            Zero ads, zero data tracking, zero server uploads. Every contribution directly funds domain, hosting, and building new browser-only tools.
+          </p>
         </div>
       </div>
 

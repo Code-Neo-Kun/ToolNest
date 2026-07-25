@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { Coffee, ShieldCheck, Heart, Sparkles, ArrowLeft, CheckCircle2 } from "lucide-react";
+import { Coffee, ShieldCheck, Sparkles, ArrowLeft, CheckCircle2, QrCode } from "lucide-react";
 import { UpiCopyButton } from "@/components/ui/UpiCopyButton";
 
 export const metadata: Metadata = {
@@ -52,7 +51,7 @@ export default function SupportPage() {
 
       {/* Payment Options Grid */}
       <div className="grid gap-8 md:grid-cols-2 mb-12">
-        {/* UPI Card (India) */}
+        {/* UPI Card with QR Scanner (India) */}
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-700 dark:bg-slate-800 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-4">
@@ -62,7 +61,7 @@ export default function SupportPage() {
                 </div>
                 <div>
                   <h2 className="font-bold text-slate-900 dark:text-white">Pay via Instant UPI</h2>
-                  <p className="text-xs text-slate-500 dark:text-slate-400">PhonePe, GPay, Paytm, BHIM</p>
+                  <p className="text-xs text-slate-500 dark:text-slate-400">Scan QR Code or Copy UPI ID</p>
                 </div>
               </div>
               <span className="rounded-full bg-emerald-100 text-emerald-800 px-2.5 py-0.5 text-xs font-semibold dark:bg-emerald-900/30 dark:text-emerald-400">
@@ -70,7 +69,23 @@ export default function SupportPage() {
               </span>
             </div>
 
-            <div className="space-y-3 my-6">
+            {/* QR Scanner Display */}
+            <div className="my-5 rounded-2xl border border-indigo-100 bg-indigo-50/40 p-4 text-center dark:border-indigo-900/40 dark:bg-indigo-950/20">
+              <div className="mx-auto max-w-[200px] overflow-hidden rounded-xl border border-slate-200 bg-white p-2 shadow-md dark:border-slate-700 dark:bg-slate-900">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src="/images/upi_qr_scanner_image.png"
+                  alt="UPI Payment QR Code Scanner"
+                  className="h-auto w-full object-contain rounded-lg"
+                />
+              </div>
+              <p className="mt-2 text-xs font-medium text-slate-600 dark:text-slate-300 flex items-center justify-center gap-1">
+                <QrCode className="h-3.5 w-3.5 text-indigo-600 dark:text-indigo-400" />
+                Scan with PhonePe, GPay, Paytm, BHIM
+              </p>
+            </div>
+
+            <div className="space-y-3 my-4">
               {[
                 { app: "PhonePe / Any UPI App", id: "9023314594@ptyes" },
                 { app: "Google Pay / Paytm", id: "9023314594@ybl" },
@@ -88,7 +103,7 @@ export default function SupportPage() {
 
           <div className="rounded-xl bg-indigo-50/50 p-3.5 dark:bg-indigo-950/20 text-xs text-indigo-700 dark:text-indigo-300 flex items-start gap-2">
             <CheckCircle2 className="h-4 w-4 shrink-0 text-indigo-500 mt-0.5" />
-            <span>Open your UPI app → Select &quot;Pay to UPI ID&quot; → Paste either ID above.</span>
+            <span>Scan QR code with any camera/UPI app or copy UPI ID directly.</span>
           </div>
         </div>
 

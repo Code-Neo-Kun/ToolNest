@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, ArrowRight } from "lucide-react";
 import {
   type ToolDefinition,
   type ToolCategory,
@@ -8,6 +8,7 @@ import {
 } from "@/lib/tools-registry";
 import { TOOL_SEO } from "@/lib/tool-seo-data";
 import { ToolCard } from "@/components/ui/ToolCard";
+import { RecentToolTracker } from "@/components/ui/RecentToolTracker";
 import { cn } from "@/lib/utils";
 
 // Same dark-mode-aware badge colors as ToolCard.
@@ -142,6 +143,9 @@ export function ToolLayout({
 
   return (
     <>
+      {/* Track visit for "recently used" — client-only, no SSR cost */}
+      <RecentToolTracker slug={tool.slug} />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemas) }}
@@ -204,6 +208,28 @@ export function ToolLayout({
         >
           {children}
         </div>
+
+        {/* What's next — post-completion prompt */}
+        {relatedTools.length > 0 && (
+          <div className="mt-6 rounded-xl border border-indigo-100 bg-indigo-50/60 px-5 py-4 dark:border-indigo-900/40 dark:bg-indigo-950/20">
+            <p className="text-xs font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400 mb-3">
+              What&apos;s next?
+            </p>
+            <div className="flex flex-wrap gap-2">
+              {relatedTools.slice(0, 3).map((t) => (
+                <Link
+                  key={t.slug}
+                  href={`/tools/${t.slug}`}
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-indigo-200 bg-white px-3 py-1.5 text-sm font-medium text-slate-700 hover:border-indigo-400 hover:text-indigo-600 transition-colors dark:bg-slate-800 dark:border-indigo-800 dark:text-slate-300 dark:hover:text-indigo-400"
+                >
+                  <span className="text-base leading-none">{t.icon}</span>
+                  {t.name}
+                  <ArrowRight className="h-3 w-3 text-slate-400" />
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* How to use */}
         {howToUse && howToUse.length > 0 && (

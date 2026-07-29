@@ -29,8 +29,30 @@ export const metadata: Metadata = {
 
 export default function AllToolsPage() {
   const categories = Object.keys(CATEGORIES) as ToolCategory[];
+  const functionalTools = TOOLS.filter((t) => t.isFunctional);
+
+  // ItemList schema for the full tool directory
+  const itemListSchema = JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: "All Free Online Tools — ToolNest",
+    description: `${functionalTools.length}+ free online tools — no signup required`,
+    numberOfItems: functionalTools.length,
+    itemListElement: functionalTools.map((tool, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: tool.name,
+      description: tool.description,
+      url: `https://toolnest.app/tools/${tool.slug}`,
+    })),
+  });
 
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: itemListSchema }}
+      />
     <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
       <div className="mb-8">
         <h1 className="text-3xl font-bold text-slate-900 dark:text-white">
@@ -81,5 +103,6 @@ export default function AllToolsPage() {
         );
       })}
     </div>
+    </>
   );
 }

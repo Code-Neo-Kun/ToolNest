@@ -1,10 +1,11 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { SupportFloatingButton } from "@/components/ui/SupportButton";
+import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { Analytics } from "@vercel/analytics/react";
 
 const geistSans = Geist({ variable: "--font-geist-sans", subsets: ["latin"] });
@@ -61,6 +62,18 @@ export const metadata: Metadata = {
     follow: true,
     googleBot: { index: true, follow: true },
   },
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/icons/icon-192.png",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f172a" },
+  ],
 };
 
 export default function RootLayout({
@@ -115,6 +128,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen flex flex-col`}
       >
+        <ThemeProvider>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: structuredData }}
@@ -144,6 +158,7 @@ export default function RootLayout({
         <Footer />
         <SupportFloatingButton />
         <Analytics />
+        </ThemeProvider>
       </body>
     </html>
   );

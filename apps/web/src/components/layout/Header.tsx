@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Menu, X, Wrench, Coffee } from "lucide-react";
 import { CATEGORIES } from "@/lib/tools-registry";
 import { SearchBox } from "@/components/ui/SearchBox";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -57,6 +58,7 @@ export function Header() {
             >
               <Coffee className="h-3.5 w-3.5" /> Support
             </a>
+            <ThemeToggle />
           </nav>
 
           {/* Mobile menu button */}

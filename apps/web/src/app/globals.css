@@ -1,6 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist+Mono&family=Geist+Sans:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
 
+/* Enable class-based dark mode for next-themes */
+@variant dark (&:is(.dark *));
+
 :root {
   --background: #ffffff;
   --foreground: #0f172a;
@@ -21,16 +24,16 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f172a;
-    --foreground: #f1f5f9;
-    --secondary: #134e56;
-    --border: #334155;
-    --muted: #64748b;
-    --card: #0f172a;
-    --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  }
+/* Dark mode variables are now applied via the .dark class (next-themes).
+   The system preference is respected by default when theme="system". */
+:is(.dark) {
+  --background: #0f172a;
+  --foreground: #f1f5f9;
+  --secondary: #134e56;
+  --border: #334155;
+  --muted: #64748b;
+  --card: #0f172a;
+  --card-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
 body {

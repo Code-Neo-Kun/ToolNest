@@ -28,6 +28,47 @@ export const TOOL_SEO: Record<string, ToolSeoData> = {
 
   // ── IMAGE ──────────────────────────────────────────────────────────────────
 
+  "background-remover": {
+    metaTitle: "Free AI Background Remover — Remove Image Background Online | ToolNest",
+    metaDescription: "Remove backgrounds from photos instantly using AI — free, no upload to server, no signup. Works on portraits, products, and more.",
+    h2: "Free Online AI Background Remover",
+    intro: "Remove the background from any photo using AI — entirely in your browser with no server upload and no account required. Get a transparent PNG in seconds.",
+    howToUse: [
+      "Upload a JPG, PNG, or WebP photo.",
+      "Click Remove Background — the AI model runs locally in your browser.",
+      "Preview the result on a transparent checkerboard background.",
+      "Download the PNG with transparency.",
+    ],
+    whyUse: "E-commerce sellers remove backgrounds from product photos for clean white or transparent listings. Graphic designers cut out subjects for composite designs. Social media creators isolate portraits for custom backgrounds.",
+    faqs: [
+      { question: "Is my image uploaded to a server?", answer: "No. The AI model (ONNX Runtime + WebAssembly) runs entirely in your browser. Your image never leaves your device." },
+      { question: "Why does it take a few seconds the first time?", answer: "The AI model (~40 MB) is downloaded and cached by your browser on first use. Subsequent runs are much faster." },
+      { question: "What image formats are supported?", answer: "JPG, PNG, and WebP as input. Output is always PNG with a transparent background." },
+      { question: "Does it work on complex backgrounds?", answer: "The model handles most photos well — portraits, products, animals. Very busy backgrounds or fine hair may need minor touch-up in an image editor." },
+    ],
+  },
+
+  "batch-image-compressor": {
+    metaTitle: "Free Batch Image Compressor — Compress Multiple Images Online | ToolNest",
+    metaDescription: "Compress multiple JPG, PNG, and WebP images at once for free. Download as ZIP. No upload to server, no signup.",
+    h2: "Free Online Batch Image Compressor",
+    intro: "Compress multiple images at once in your browser — no server upload and no account required. Download all compressed files as a single ZIP archive.",
+    howToUse: [
+      "Upload multiple JPG, PNG, or WebP images.",
+      "Adjust the quality slider to set the compression level.",
+      "Click Compress All — each image is processed in sequence.",
+      "Download individual files or all as a ZIP.",
+    ],
+    whyUse: "Web developers compress entire image directories before deployment to improve page speed. E-commerce sellers bulk-compress product photos before uploading to Shopify or WooCommerce. Photographers deliver compressed previews to clients without processing each file individually.",
+    faqs: [
+      { question: "Are my images uploaded to a server?", answer: "No. All compression runs in your browser using WebAssembly. Nothing leaves your device." },
+      { question: "How many images can I compress at once?", answer: "There is no hard limit. Very large batches (50+ files) may be slow depending on your device." },
+      { question: "Can I download all files at once?", answer: "Yes — click Download All to get a ZIP archive containing all compressed images." },
+      { question: "What formats are supported?", answer: "JPG, PNG, and WebP are supported as both input and output formats." },
+    ],
+  },
+
+
   "image-compressor": {
     metaTitle: "Free Image Compressor — Compress JPG, PNG, WebP Online | ToolNest",
     metaDescription: "Compress images online for free. No upload to server, no signup, no file size limit. Reduce JPG, PNG, and WebP file size instantly in your browser.",

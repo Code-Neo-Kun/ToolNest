@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, Zap, Shield, Globe } from "lucide-react";
+import { ArrowRight, Zap, Shield, Globe, Users } from "lucide-react";
 import { TOOLS, CATEGORIES, getPopularTools } from "@/lib/tools-registry";
 import { ToolCard } from "@/components/ui/ToolCard";
 import { SearchBox } from "@/components/ui/SearchBox";
+import { RecentToolsRow } from "@/components/ui/RecentToolsRow";
 
 export const metadata: Metadata = {
   // Title omits the template suffix — this IS the homepage, use the full brand name.
@@ -116,6 +117,10 @@ export default function HomePage() {
                 icon: <Globe className="h-4 w-4 text-blue-500" />,
                 text: "Works in any browser",
               },
+              {
+                icon: <Users className="h-4 w-4 text-violet-500" />,
+                text: "100,000+ monthly users",
+              },
             ].map((f, i) => (
               <div key={i} className="flex items-center gap-1.5">
                 {f.icon}
@@ -125,6 +130,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* Recently used tools — client-side, renders only after first visit */}
+      <RecentToolsRow />
 
       {/* Categories */}
       <section className="py-12">

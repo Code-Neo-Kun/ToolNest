@@ -14,6 +14,14 @@ const TOOL_LOADERS: Record<string, () => Promise<ToolComponent>> = {
     import("@/components/tools/image/ImageCompressorTool").then(
       (mod) => mod.ImageCompressorTool,
     ),
+  "@/components/tools/image/BackgroundRemoverTool": () =>
+    import("@/components/tools/image/BackgroundRemoverTool").then(
+      (mod) => mod.BackgroundRemoverTool,
+    ),
+  "@/components/tools/image/BatchImageCompressorTool": () =>
+    import("@/components/tools/image/BatchImageCompressorTool").then(
+      (mod) => mod.BatchImageCompressorTool,
+    ),
   "@/components/tools/image/ImageResizerTool": () =>
     import("@/components/tools/image/ImageResizerTool").then(
       (mod) => mod.ImageResizerTool,

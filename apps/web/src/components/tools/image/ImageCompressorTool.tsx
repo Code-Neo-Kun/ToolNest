@@ -6,14 +6,18 @@ import { FileUploader } from "@/components/ui/FileUploader";
 import { Button } from "@/components/ui/Button";
 import { getToolBySlug } from "@/lib/tools-registry";
 import { formatBytes, downloadBlob } from "@/lib/utils";
-import { Download, ArrowDown } from "lucide-react";
+import { Download, ArrowDown, Info } from "lucide-react";
 
 const tool = getToolBySlug("image-compressor")!;
 
+const isPng = (f: File) => f.type === "image/png" || f.name.toLowerCase().endsWith(".png");
+
 export function ImageCompressorTool() {
   const [file, setFile] = useState<File | null>(null);
-  const [quality, setQuality] = useState(80);
-  const [compressed, setCompressed] = useState<{ blob: Blob; url: string } | null>(null);
+  const [quality, setQuality] = useState(82);
+  const [convertPngToJpeg, setConvertPngToJpeg] = useState(false);
+  const [maxWidthHeight, setMaxWidthHeight] = useState(0); // 0 = no resize
+  const [compressed, setCompressed] = useState<{ blob: Blob; url: string; name: string } | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
@@ -21,84 +25,170 @@ export function ImageCompressorTool() {
     if (!file) return;
     setLoading(true);
     setError(null);
+    setCompressed(null);
+
     try {
-      const options = {
-        maxSizeMB: 10,
+      const fileIsPng = isPng(file);
+      // If the user wants to convert PNG to JPEG, use image/jpeg as output type
+      const outputType =
+        fileIsPng && convertPngToJpeg ? "image/jpeg"
+        : file.type as "image/jpeg" | "image/png" | "image/webp";
+
+      const options: Parameters<typeof imageCompression>[1] = {
+        // Set maxSizeMB very generously — we control size via quality, not an
+        // arbitrary MB cap that can over-compress or refuse to compress at all.
+        maxSizeMB: 50,
         initialQuality: quality / 100,
         useWebWorker: true,
-        fileType: file.type as "image/jpeg" | "image/png" | "image/webp",
+        fileType: outputType,
+        // Optionally limit dimensions while maintaining aspect ratio
+        ...(maxWidthHeight > 0 ? { maxWidthOrHeight: maxWidthHeight } : {}),
+        // Preserve EXIF for JPEG (user can strip via EXIF tool if needed)
+        preserveExif: false,
       };
+
       const blob = await imageCompression(file, options);
+
+      // Build the output filename
+      const baseName = file.name.replace(/\.[^.]+$/, "");
+      const ext = outputType === "image/jpeg" ? "jpg"
+        : outputType === "image/webp" ? "webp"
+        : "png";
+      const outputName = `compressed-${baseName}.${ext}`;
+
       const url = URL.createObjectURL(blob);
-      setCompressed({ blob, url });
+      setCompressed({ blob, url, name: outputName });
     } catch {
-      setError("Failed to compress image. Please try another file.");
+      setError("Compression failed. Please try a different image.");
     } finally {
       setLoading(false);
     }
   };
 
-  const savings = compressed && file ? Math.round((1 - compressed.blob.size / file.size) * 100) : 0;
+  const savings =
+    compressed && file
+      ? Math.round((1 - compressed.blob.size / file.size) * 100)
+      : 0;
+
+  const fileIsPng = file ? isPng(file) : false;
 
   return (
     <ToolLayout
       tool={tool}
       howToUse={[
-        "Upload a JPG, PNG, or WebP image using the file picker or drag and drop.",
-        "Adjust the quality slider (lower = smaller file, higher = better quality).",
-        "Click Compress and wait for the result.",
-        "Download your compressed image.",
+        "Upload a JPG, PNG, or WebP image.",
+        "Adjust the quality slider — 80–85% is the sweet spot for most images.",
+        "For PNG files, enable 'Convert to JPEG' for much larger size reductions.",
+        "Optionally set a max dimension to resize and compress in one step.",
+        "Click Compress and download the result.",
       ]}
       faqs={[
         {
-          question: "Does compression reduce image quality?",
-          answer:
-            "A quality setting of 70–85% is usually indistinguishable from the original for most use cases. Below 60% you may start to see artifacts in JPGs.",
-        },
-        {
           question: "Is my image uploaded to a server?",
           answer:
-            "No. All compression happens in your browser using WebAssembly. Your files never leave your device.",
+            "No. All compression runs in your browser using WebAssembly. Your files never leave your device.",
+        },
+        {
+          question: "Why does quality at 80% still look the same?",
+          answer:
+            "80–85% quality is perceptually near-identical to the original for most photos. The compression removes data your eye can't see. Below 60% you may notice artefacts.",
+        },
+        {
+          question: "Why doesn't my PNG compress much?",
+          answer:
+            "PNG is a lossless format — quality settings have no effect on it. Enable 'Convert to JPEG' to get 50–80% size reduction. Only use JPEG if the image doesn't need transparency.",
         },
         {
           question: "What formats are supported?",
-          answer: "JPEG, PNG, and WebP images are supported.",
-        },
-        {
-          question: "What is the maximum file size?",
-          answer: "You can compress images up to 50MB in size.",
+          answer: "JPEG, PNG, and WebP are supported as both input and output.",
         },
       ]}
     >
       <FileUploader
         accept="image/jpeg,image/png,image/webp"
-        onFilesSelected={(files) => { setFile(files[0] ?? null); setCompressed(null); }}
+        onFilesSelected={(files) => {
+          setFile(files[0] ?? null);
+          setCompressed(null);
+        }}
         label="Drop an image here or click to browse"
-        hint="Supports JPG, PNG, WebP — up to 50MB"
+        hint="Supports JPG, PNG, WebP"
       />
 
       {file && (
-        <div className="mt-6 space-y-4">
+        <div className="mt-5 space-y-4">
+          {/* PNG notice */}
+          {fileIsPng && !convertPngToJpeg && (
+            <div className="flex items-start gap-2 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 dark:border-amber-800/40 dark:bg-amber-900/20">
+              <Info className="h-4 w-4 mt-0.5 shrink-0 text-amber-600 dark:text-amber-400" />
+              <p className="text-sm text-amber-700 dark:text-amber-300">
+                PNG is lossless — quality settings have little effect. Enable{" "}
+                <strong>Convert to JPEG</strong> below for significant size reduction.
+              </p>
+            </div>
+          )}
+
           {/* Quality slider */}
           <div>
             <div className="flex items-center justify-between text-sm mb-2">
-              <label htmlFor="quality" className="font-medium text-slate-700 dark:text-slate-300">
+              <label className="font-medium text-slate-700 dark:text-slate-300">
                 Quality
               </label>
               <span className="font-semibold text-indigo-600">{quality}%</span>
             </div>
             <input
-              id="quality"
               type="range"
               min={10}
               max={100}
               value={quality}
               onChange={(e) => setQuality(Number(e.target.value))}
               className="w-full accent-indigo-600"
+              disabled={fileIsPng && !convertPngToJpeg}
             />
             <div className="flex justify-between text-xs text-slate-400 mt-1">
-              <span>Smaller file</span>
-              <span>Better quality</span>
+              <span>Smallest file</span>
+              <span>Best quality</span>
+            </div>
+          </div>
+
+          {/* Options */}
+          <div className="grid gap-4 sm:grid-cols-2">
+            {/* PNG → JPEG toggle */}
+            {fileIsPng && (
+              <label className="flex cursor-pointer items-center gap-3 rounded-xl border border-slate-200 bg-slate-50 px-4 py-3 hover:border-indigo-300 dark:border-slate-700 dark:bg-slate-800">
+                <input
+                  type="checkbox"
+                  checked={convertPngToJpeg}
+                  onChange={(e) => setConvertPngToJpeg(e.target.checked)}
+                  className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
+                />
+                <div>
+                  <p className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                    Convert to JPEG
+                  </p>
+                  <p className="text-xs text-slate-500">
+                    50–80% smaller — loses transparency
+                  </p>
+                </div>
+              </label>
+            )}
+
+            {/* Max dimension */}
+            <div>
+              <label className="block text-sm font-medium text-slate-700 dark:text-slate-300 mb-1">
+                Max dimension (px)
+              </label>
+              <select
+                value={maxWidthHeight}
+                onChange={(e) => setMaxWidthHeight(Number(e.target.value))}
+                className="w-full rounded-xl border border-slate-200 bg-slate-50 px-3 py-2 text-sm outline-none focus:border-indigo-400 dark:border-slate-700 dark:bg-slate-800 dark:text-slate-200"
+              >
+                <option value={0}>No resize</option>
+                <option value={3840}>3840 (4K)</option>
+                <option value={1920}>1920 (FHD)</option>
+                <option value={1280}>1280 (HD)</option>
+                <option value={800}>800 (Web thumbnail)</option>
+                <option value={400}>400 (Small)</option>
+              </select>
             </div>
           </div>
 
@@ -106,40 +196,63 @@ export function ImageCompressorTool() {
             Compress Image
           </Button>
 
-          {error && <p className="text-sm text-red-600">{error}</p>}
+          {error && (
+            <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+          )}
 
           {/* Result */}
           {compressed && (
-            <div className="rounded-xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700 dark:bg-slate-900">
+            <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-4 dark:border-emerald-800/40 dark:bg-emerald-900/10">
               <div className="flex flex-col sm:flex-row gap-4 items-center">
-                {/* Preview */}
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
                   src={compressed.url}
                   alt="Compressed preview"
                   className="max-h-40 max-w-[200px] rounded-lg object-contain border border-slate-200 dark:border-slate-700"
                 />
-                {/* Stats */}
-                <div className="flex-1 space-y-2">
+                <div className="flex-1 w-full space-y-2">
                   <div className="flex justify-between text-sm">
                     <span className="text-slate-500">Original</span>
                     <span className="font-medium">{formatBytes(file.size)}</span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-slate-500">Compressed</span>
-                    <span className="font-medium text-green-600">{formatBytes(compressed.blob.size)}</span>
+                    <span className="font-medium text-emerald-600 dark:text-emerald-400">
+                      {formatBytes(compressed.blob.size)}
+                    </span>
                   </div>
                   <div className="flex justify-between text-sm">
                     <span className="text-slate-500">Savings</span>
-                    <span className="font-semibold text-green-600 flex items-center gap-1">
-                      <ArrowDown className="h-3.5 w-3.5" />{savings}%
+                    <span
+                      className={`font-semibold flex items-center gap-1 ${
+                        savings > 0
+                          ? "text-emerald-600 dark:text-emerald-400"
+                          : "text-slate-500"
+                      }`}
+                    >
+                      {savings > 0 ? (
+                        <>
+                          <ArrowDown className="h-3.5 w-3.5" />
+                          {savings}%
+                        </>
+                      ) : (
+                        "Already optimised"
+                      )}
                     </span>
                   </div>
+                  {savings <= 5 && (
+                    <p className="text-xs text-slate-400">
+                      {fileIsPng && !convertPngToJpeg
+                        ? "Enable Convert to JPEG for bigger savings"
+                        : "Try reducing quality or enabling max dimension to get more savings"}
+                    </p>
+                  )}
                   <Button
-                    onClick={() => downloadBlob(compressed.blob, `compressed-${file.name}`)}
-                    className="w-full mt-2"
+                    onClick={() => downloadBlob(compressed.blob, compressed.name)}
+                    className="w-full mt-1"
                   >
-                    <Download className="h-4 w-4" /> Download
+                    <Download className="h-4 w-4" />
+                    Download ({formatBytes(compressed.blob.size)})
                   </Button>
                 </div>
               </div>

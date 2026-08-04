@@ -32,34 +32,41 @@ export function BackgroundRemoverTool() {
     if (!file) return;
     setLoading(true);
     setError(null);
-    setProgress("Loading AI model (first run may take ~10s)…");
+    setProgress("Loading AI model…");
 
     try {
-      // Dynamic import keeps the heavy WASM out of the initial bundle
       const { removeBackground: removeBg } = await import(
         "@imgly/background-removal"
       );
 
-      setProgress("Processing image…");
+      setProgress("Analysing image…");
 
-      const resultBlob = await removeBg(file, {
-        publicPath: "/_next/static/chunks/",
+      const blob = await removeBg(file, {
+        // Use the library's own CDN to serve WASM/ONNX assets.
+        // This avoids the need to copy assets into /public manually
+        // and is the officially recommended approach for Next.js apps.
+        publicPath: `https://unpkg.com/@imgly/background-removal@1.4.5/dist/`,
         progress: (key: string, current: number, total: number) => {
           if (total > 0) {
             const pct = Math.round((current / total) * 100);
-            setProgress(`${key}: ${pct}%`);
+            // Show human-readable step names
+            const label =
+              key.includes("fetch") ? "Downloading model"
+              : key.includes("compute") ? "Processing"
+              : "Loading";
+            setProgress(`${label}… ${pct}%`);
           }
         },
       });
 
-      const url = URL.createObjectURL(resultBlob);
+      const url = URL.createObjectURL(blob);
       setResultUrl(url);
-      setResultBlob(resultBlob);
+      setResultBlob(blob);
       setProgress("");
     } catch (e) {
-      console.error(e);
+      console.error("Background removal error:", e);
       setError(
-        "Background removal failed. Try a smaller image or a different photo.",
+        "Background removal failed. This may happen with very large images or unsupported formats. Try resizing the image below 4 MP first.",
       );
     } finally {
       setLoading(false);
@@ -76,10 +83,10 @@ export function BackgroundRemoverTool() {
     <ToolLayout
       tool={tool}
       howToUse={[
-        "Upload a JPG or PNG photo.",
-        "Click Remove Background — the AI model runs entirely in your browser.",
-        "Preview the result with a transparent background.",
-        "Download the PNG with transparency.",
+        "Upload a JPG or PNG photo — portraits and product shots work best.",
+        "Click Remove Background — the AI runs in your browser, nothing is uploaded.",
+        "The first run downloads the AI model (~40 MB) and caches it.",
+        "Preview the transparent result and download the PNG.",
       ]}
       faqs={[
         {
@@ -88,18 +95,19 @@ export function BackgroundRemoverTool() {
             "No. The AI model (ONNX Runtime + WebAssembly) runs entirely in your browser. Your image never leaves your device.",
         },
         {
-          question: "Why does the first run take a few seconds?",
+          question: "Why does the first run take longer?",
           answer:
-            "The AI model (~40 MB) is downloaded and cached by your browser on the first use. Subsequent runs are much faster.",
+            "The AI model (~40 MB) is downloaded once and cached by your browser. Subsequent runs on the same device are much faster.",
         },
         {
           question: "What image formats are supported?",
-          answer: "JPG and PNG input. Output is always PNG with a transparent background.",
+          answer:
+            "JPG, PNG, and WebP as input. Output is always a PNG with a transparent background.",
         },
         {
-          question: "Does it work on complex backgrounds?",
+          question: "My image is too large — what should I do?",
           answer:
-            "The model handles most photos well — portraits, products, animals. Very busy backgrounds or fine hair may need minor touch-up in an image editor.",
+            "For best performance keep images under 4 megapixels (e.g. 2000×2000 px). Use the Image Resizer tool to scale down first.",
         },
       ]}
     >
@@ -111,34 +119,36 @@ export function BackgroundRemoverTool() {
           hint="Best results with portraits and product photos — JPG, PNG, WebP"
         />
 
-        {file && (
-          <Button
-            onClick={removeBackground}
-            loading={loading}
-            className="w-full"
-            disabled={loading}
-          >
-            {loading ? (
-              <>
-                <Loader2 className="h-4 w-4 animate-spin" />
-                {progress || "Processing…"}
-              </>
-            ) : (
-              "✨ Remove Background"
-            )}
+        {file && !loading && (
+          <Button onClick={removeBackground} className="w-full">
+            ✨ Remove Background
           </Button>
         )}
 
+        {loading && (
+          <div className="flex flex-col items-center gap-3 py-4">
+            <Loader2 className="h-8 w-8 animate-spin text-indigo-500" />
+            <p className="text-sm text-slate-600 dark:text-slate-400">
+              {progress || "Processing…"}
+            </p>
+            <p className="text-xs text-slate-400">
+              First run downloads the AI model (~40 MB) — subsequent runs are instant
+            </p>
+          </div>
+        )}
+
         {error && (
-          <p className="text-sm text-red-600 dark:text-red-400">{error}</p>
+          <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 dark:border-red-800/40 dark:bg-red-900/20">
+            <p className="text-sm text-red-700 dark:text-red-400">{error}</p>
+          </div>
         )}
 
         {/* Side-by-side comparison */}
         {resultUrl && srcUrl && (
           <div className="space-y-3">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <div className="space-y-1.5">
-                <p className="text-xs font-medium uppercase tracking-wide text-slate-500 dark:text-slate-400">
+                <p className="text-xs font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
                   Original
                 </p>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -149,17 +159,21 @@ export function BackgroundRemoverTool() {
                 />
               </div>
               <div className="space-y-1.5">
-                <p className="text-xs font-medium uppercase tracking-wide text-indigo-600 dark:text-indigo-400">
+                <p className="text-xs font-semibold uppercase tracking-wide text-indigo-600 dark:text-indigo-400">
                   Background removed
                 </p>
-                {/* Checkerboard shows transparency */}
+                {/* Checkerboard pattern to show transparency */}
                 <div
                   className="w-full rounded-xl border border-indigo-200 dark:border-indigo-700 overflow-hidden max-h-64 flex items-center justify-center"
                   style={{
                     backgroundImage:
-                      "linear-gradient(45deg, #e2e8f0 25%, transparent 25%), linear-gradient(-45deg, #e2e8f0 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #e2e8f0 75%), linear-gradient(-45deg, transparent 75%, #e2e8f0 75%)",
+                      "linear-gradient(45deg,#cbd5e1 25%,transparent 25%)," +
+                      "linear-gradient(-45deg,#cbd5e1 25%,transparent 25%)," +
+                      "linear-gradient(45deg,transparent 75%,#cbd5e1 75%)," +
+                      "linear-gradient(-45deg,transparent 75%,#cbd5e1 75%)",
                     backgroundSize: "16px 16px",
-                    backgroundPosition: "0 0, 0 8px, 8px -8px, -8px 0px",
+                    backgroundPosition: "0 0,0 8px,8px -8px,-8px 0",
+                    backgroundColor: "#f1f5f9",
                   }}
                 >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -172,9 +186,22 @@ export function BackgroundRemoverTool() {
               </div>
             </div>
 
-            <Button onClick={download} className="w-full">
+            <Button onClick={download} variant="secondary" className="w-full">
               <Download className="h-4 w-4" />
               Download PNG (transparent background)
+            </Button>
+
+            <Button
+              onClick={() => {
+                setResultUrl(null);
+                setResultBlob(null);
+                setFile(null);
+                setSrcUrl(null);
+              }}
+              variant="ghost"
+              className="w-full text-slate-500"
+            >
+              Try another image
             </Button>
           </div>
         )}

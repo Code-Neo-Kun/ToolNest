@@ -21,22 +21,6 @@ export function GstCalculatorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Enter the amount and GST rate.",
-        "The calculator shows tax and total payable amount.",
-        "Copy the result for invoices or pricing.",
-      ]}
-      faqs={[
-        {
-          question: "What is GST?",
-          answer:
-            "GST is a value-added tax applied to goods and services in many countries.",
-        },
-        {
-          question: "How is GST calculated?",
-          answer: "GST = amount × rate ÷ 100. Total = amount + GST.",
-        },
-      ]}
     >
       <div className="grid gap-6 lg:grid-cols-2">
         <label className="block text-sm text-slate-600 dark:text-slate-300">

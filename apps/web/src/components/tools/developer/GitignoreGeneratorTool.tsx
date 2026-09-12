@@ -209,28 +209,6 @@ export function GitignoreGeneratorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Select one or more technology stacks.",
-        "Review the generated .gitignore content.",
-        "Copy it or download it directly into your repository.",
-      ]}
-      faqs={[
-        {
-          question: "Can I select multiple stacks?",
-          answer:
-            "Yes — click multiple stack buttons to merge their rules into one file.",
-        },
-        {
-          question: "Can I customise the output?",
-          answer:
-            "Copy the result and add any project-specific paths you need.",
-        },
-        {
-          question: "Where should I put the .gitignore file?",
-          answer:
-            "Place it in the root of your repository. Git picks it up automatically.",
-        },
-      ]}
     >
       <div className="space-y-5">
         {/* Stack selector */}

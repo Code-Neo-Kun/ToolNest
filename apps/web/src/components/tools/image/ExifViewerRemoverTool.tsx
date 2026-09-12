@@ -73,23 +73,6 @@ export function ExifViewerRemoverTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload a photo to inspect EXIF metadata.",
-        "View the extracted fields and remove metadata for privacy.",
-        "Download the cleaned image when ready.",
-      ]}
-      faqs={[
-        {
-          question: "What metadata is removed?",
-          answer:
-            "Removing EXIF metadata strips GPS location, camera details, and other embedded photo data.",
-        },
-        {
-          question: "Does this change the image quality?",
-          answer:
-            "The image is re-encoded in the same format and maintains visual quality while removing metadata.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <FileUploader

@@ -75,27 +75,6 @@ export function PdfMergeTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload two or more PDF files using the file picker.",
-        "Drag the rows to reorder them — the final PDF will follow this order.",
-        "Click Merge PDFs and the combined file downloads automatically.",
-      ]}
-      faqs={[
-        {
-          question: "Are my PDFs uploaded to a server?",
-          answer:
-            "No. Everything runs in your browser using pdf-lib. Your files never leave your device.",
-        },
-        {
-          question: "Is there a file size limit?",
-          answer:
-            "There's no hard limit, but very large PDFs (100+ MB) may be slow depending on your device memory.",
-        },
-        {
-          question: "Can I merge more than 2 files?",
-          answer: "Yes — add as many PDFs as you need.",
-        },
-      ]}
     >
       <FileUploader
         accept="application/pdf"

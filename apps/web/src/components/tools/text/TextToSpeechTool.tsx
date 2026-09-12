@@ -46,23 +46,6 @@ export function TextToSpeechTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Paste text into the editor.",
-        "Choose a voice and press Speak.",
-        "Stop playback at any time.",
-      ]}
-      faqs={[
-        {
-          question: "What browsers support this?",
-          answer:
-            "Most modern browsers support SpeechSynthesis, but voice availability may vary.",
-        },
-        {
-          question: "Can I pause speech?",
-          answer:
-            "You can stop playback, but not all browsers support pausing and resuming.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <textarea

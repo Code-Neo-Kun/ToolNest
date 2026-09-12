@@ -119,27 +119,6 @@ export function JpgToPdfTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload one or more JPG or PNG images.",
-        "Drag rows to reorder — the PDF will follow this order.",
-        "Choose a page size and click Convert to PDF.",
-      ]}
-      faqs={[
-        {
-          question: "What image formats are supported?",
-          answer: "JPEG and PNG images are supported.",
-        },
-        {
-          question: "Is there a limit on the number of images?",
-          answer:
-            "No hard limit, but very large images may be slow to process in the browser.",
-        },
-        {
-          question: 'What does "Fit to image" page size do?',
-          answer:
-            "Each page is sized exactly to the image dimensions, with no white borders.",
-        },
-      ]}
     >
       <FileUploader
         accept="image/jpeg,image/png"

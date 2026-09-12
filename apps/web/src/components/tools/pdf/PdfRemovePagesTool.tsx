@@ -69,22 +69,6 @@ export function PdfRemovePagesTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload a PDF file.",
-        "Click the page numbers you want to delete — they highlight in red.",
-        "Click Remove Selected Pages to download the cleaned PDF.",
-      ]}
-      faqs={[
-        {
-          question: "Can I undo the removal?",
-          answer:
-            "The original file on your device is never modified. Just re-upload it if you need to start over.",
-        },
-        {
-          question: "Is there a limit on pages?",
-          answer: "No — works for PDFs of any length.",
-        },
-      ]}
     >
       <FileUploader
         accept="application/pdf"

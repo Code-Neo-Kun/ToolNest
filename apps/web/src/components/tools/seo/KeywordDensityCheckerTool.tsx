@@ -23,22 +23,6 @@ export function KeywordDensityCheckerTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Paste your content.",
-        "Enter a keyword to analyze.",
-        "Review keyword frequency and density percentage.",
-      ]}
-      faqs={[
-        {
-          question: "What is keyword density?",
-          answer:
-            "It is the percentage of times a keyword appears in the total content.",
-        },
-        {
-          question: "What is a good density?",
-          answer: "A natural keyword density is usually between 1% and 3%.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <label className="block text-sm text-slate-600 dark:text-slate-300">

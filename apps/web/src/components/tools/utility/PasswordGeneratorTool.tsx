@@ -65,26 +65,6 @@ export function PasswordGeneratorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Set the password length using the slider.",
-        "Toggle character types on or off.",
-        "Click Generate Password.",
-        "Copy the password.",
-      ]}
-      faqs={[
-        {
-          question: "How long should my password be?",
-          answer: "At least 12 characters. 16+ is recommended for important accounts. Longer passwords are exponentially harder to crack.",
-        },
-        {
-          question: "Are these passwords stored anywhere?",
-          answer: "No. Passwords are generated in your browser using the cryptographically secure crypto.getRandomValues() API. Nothing is sent to any server.",
-        },
-        {
-          question: "Should I include symbols?",
-          answer: "Yes, if the service allows it. Symbols significantly increase password entropy.",
-        },
-      ]}
     >
       <div className="space-y-5">
         {/* Length */}

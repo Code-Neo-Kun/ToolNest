@@ -76,28 +76,6 @@ export function PdfWatermarkTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload a PDF file.",
-        "Type the watermark text and adjust opacity, size, and angle.",
-        "Click Add Watermark to download the result.",
-      ]}
-      faqs={[
-        {
-          question: "Can I remove a watermark added with this tool?",
-          answer:
-            "Watermarks added by this tool are embedded as page content. They cannot be cleanly removed after the fact.",
-        },
-        {
-          question: "Can I use an image watermark?",
-          answer:
-            "Text watermarks are supported. Image watermark support is planned.",
-        },
-        {
-          question: "What opacity should I use?",
-          answer:
-            "15–25% is the sweet spot — visible enough to deter copying but not distracting when reading.",
-        },
-      ]}
     >
       <FileUploader
         accept="application/pdf"

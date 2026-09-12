@@ -47,26 +47,6 @@ export function RobotsGeneratorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Configure rules for each bot (use * for all bots).",
-        "Add allowed and disallowed paths.",
-        "Add your sitemap URL.",
-        "Copy the result or download as robots.txt.",
-      ]}
-      faqs={[
-        {
-          question: "What is robots.txt?",
-          answer: "robots.txt is a file at your site root that tells search engine bots which pages they can and cannot crawl.",
-        },
-        {
-          question: "Does robots.txt prevent pages from being indexed?",
-          answer: "Disallowing a URL in robots.txt prevents crawling but does not guarantee removal from search results. Use noindex meta tags for that.",
-        },
-        {
-          question: "Where do I put robots.txt?",
-          answer: "It must be placed at the root of your domain: https://yoursite.com/robots.txt",
-        },
-      ]}
     >
       <div className="grid gap-6 md:grid-cols-2">
         {/* Form */}

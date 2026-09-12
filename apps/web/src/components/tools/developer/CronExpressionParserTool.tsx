@@ -31,23 +31,6 @@ export function CronExpressionParserTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Enter a cron expression.",
-        "Review the next run times and schedule meaning.",
-        "Copy the expression for your planner or job config.",
-      ]}
-      faqs={[
-        {
-          question: "What cron format is supported?",
-          answer:
-            "This tool supports standard 5-field cron expressions for minute, hour, day, month, and weekday.",
-        },
-        {
-          question: "Can I use range values?",
-          answer:
-            "Yes, ranges (like 1-5), lists, wildcards, and steps are supported.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <label className="block text-sm text-slate-600 dark:text-slate-300">

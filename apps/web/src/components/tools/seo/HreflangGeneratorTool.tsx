@@ -39,23 +39,6 @@ export function HreflangGeneratorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Enter your default page URL.",
-        "Add comma-separated language:url pairs.",
-        "Copy the hreflang tags into your head markup.",
-      ]}
-      faqs={[
-        {
-          question: "What is x-default?",
-          answer:
-            "x-default indicates the default URL when no language match is found.",
-        },
-        {
-          question: "Can I use hreflang with subdomains?",
-          answer:
-            "Yes. Each language version can use its own URL, including subdomains or subfolders.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <label className="block text-sm text-slate-600 dark:text-slate-300">

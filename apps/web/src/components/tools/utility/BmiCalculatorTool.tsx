@@ -30,23 +30,6 @@ export function BmiCalculatorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Enter your weight and height.",
-        "Calculate your BMI instantly.",
-        "Use the category guidance for general health awareness.",
-      ]}
-      faqs={[
-        {
-          question: "What does BMI measure?",
-          answer:
-            "BMI measures body mass relative to height, but it does not account for muscle mass or body composition.",
-        },
-        {
-          question: "Is BMI a medical diagnosis?",
-          answer:
-            "No. It is a general guideline and should not replace medical advice.",
-        },
-      ]}
     >
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block text-sm text-slate-600 dark:text-slate-300">

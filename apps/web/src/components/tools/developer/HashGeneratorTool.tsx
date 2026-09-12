@@ -57,28 +57,6 @@ export function HashGeneratorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Enter or paste your text.",
-        "Click Generate Hashes.",
-        "Copy any hash value.",
-      ]}
-      faqs={[
-        {
-          question: "What is a hash?",
-          answer:
-            "A cryptographic hash is a fixed-size string computed from any input. The same input always produces the same hash, but you can't reverse it to get the original text.",
-        },
-        {
-          question: "Which hash algorithm should I use?",
-          answer:
-            "SHA-256 is the most common for general use. SHA-512 provides more security. SHA-1 is considered weak and should be avoided for security purposes.",
-        },
-        {
-          question: "What happened to MD5?",
-          answer:
-            "MD5 is not available via the WebCrypto API because it's considered cryptographically broken. Use SHA-256 or better.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">

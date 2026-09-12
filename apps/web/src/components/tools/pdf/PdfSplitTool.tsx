@@ -86,22 +86,6 @@ export function PdfSplitTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload a PDF file.",
-        'Enter page ranges separated by commas, e.g. "1-3, 5, 7-9".',
-        "Click Split PDF — each range downloads as a separate file.",
-      ]}
-      faqs={[
-        {
-          question: "How do I specify page ranges?",
-          answer:
-            'Use comma-separated ranges like "1-3, 5, 8-10". Each range becomes its own PDF.',
-        },
-        {
-          question: "Are my files processed on a server?",
-          answer: "No — everything runs locally in your browser via pdf-lib.",
-        },
-      ]}
     >
       <FileUploader
         accept="application/pdf"

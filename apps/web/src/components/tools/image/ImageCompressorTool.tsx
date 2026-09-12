@@ -75,34 +75,6 @@ export function ImageCompressorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload a JPG, PNG, or WebP image.",
-        "Adjust the quality slider — 80–85% is the sweet spot for most images.",
-        "For PNG files, enable 'Convert to JPEG' for much larger size reductions.",
-        "Optionally set a max dimension to resize and compress in one step.",
-        "Click Compress and download the result.",
-      ]}
-      faqs={[
-        {
-          question: "Is my image uploaded to a server?",
-          answer:
-            "No. All compression runs in your browser using WebAssembly. Your files never leave your device.",
-        },
-        {
-          question: "Why does quality at 80% still look the same?",
-          answer:
-            "80–85% quality is perceptually near-identical to the original for most photos. The compression removes data your eye can't see. Below 60% you may notice artefacts.",
-        },
-        {
-          question: "Why doesn't my PNG compress much?",
-          answer:
-            "PNG is a lossless format — quality settings have no effect on it. Enable 'Convert to JPEG' to get 50–80% size reduction. Only use JPEG if the image doesn't need transparency.",
-        },
-        {
-          question: "What formats are supported?",
-          answer: "JPEG, PNG, and WebP are supported as both input and output.",
-        },
-      ]}
     >
       <FileUploader
         accept="image/jpeg,image/png,image/webp"

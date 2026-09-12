@@ -85,28 +85,6 @@ export function JsonFormatterTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Paste your JSON in the input area.",
-        "Click Format to beautify, Minify to compress, or Validate to check.",
-        "Copy the result with the Copy button.",
-      ]}
-      faqs={[
-        {
-          question: "What is JSON formatting?",
-          answer:
-            "JSON formatting adds indentation and line breaks to make JSON human-readable. Minifying removes whitespace to reduce file size.",
-        },
-        {
-          question: "Is my JSON data safe?",
-          answer:
-            "All processing happens in your browser. No data is sent to any server.",
-        },
-        {
-          question: "What indent size should I use?",
-          answer:
-            "2 spaces is the most common convention. 4 spaces is also widely used, especially in some languages.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-2">

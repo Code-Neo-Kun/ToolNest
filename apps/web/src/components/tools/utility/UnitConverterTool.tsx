@@ -136,28 +136,6 @@ export function UnitConverterTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Choose a unit category.",
-        "Enter a value and select the From and To units.",
-        "The result updates instantly.",
-      ]}
-      faqs={[
-        {
-          question: "What unit categories are supported?",
-          answer:
-            "Length, weight/mass, temperature, area, speed, and data size.",
-        },
-        {
-          question: "How accurate are the conversions?",
-          answer:
-            "Results use up to 8 significant figures using standard conversion factors.",
-        },
-        {
-          question: "Why does the result change when I switch category?",
-          answer:
-            "The from/to units reset to the first two in the new category to avoid stale values.",
-        },
-      ]}
     >
       <div className="space-y-5">
         {/* Category pills */}

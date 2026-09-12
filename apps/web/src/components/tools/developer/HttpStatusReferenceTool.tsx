@@ -74,23 +74,6 @@ export function HttpStatusReferenceTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Search HTTP status codes by number or name.",
-        "Read short guidance for each common status.",
-        "Copy the code and description for docs or debugging.",
-      ]}
-      faqs={[
-        {
-          question: "Which status codes are included?",
-          answer:
-            "Common 2xx, 3xx, 4xx, and 5xx codes used in web development are included.",
-        },
-        {
-          question: "Can I use this for API docs?",
-          answer:
-            "Yes. It is useful for reference when writing API responses or debugging server errors.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <label className="block text-sm text-slate-600 dark:text-slate-300">

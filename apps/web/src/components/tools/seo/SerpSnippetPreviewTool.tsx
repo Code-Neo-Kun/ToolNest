@@ -16,22 +16,6 @@ export function SerpSnippetPreviewTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Enter a title and meta description.",
-        "Preview how they look in Google search results.",
-        "Adjust length and wording to improve click-through rate.",
-      ]}
-      faqs={[
-        {
-          question: "What length should my title be?",
-          answer: "Aim for 50–60 characters to avoid truncation in results.",
-        },
-        {
-          question: "What length should my description be?",
-          answer:
-            "Keep meta descriptions around 150–160 characters for best visibility.",
-        },
-      ]}
     >
       <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
         <div className="space-y-4">

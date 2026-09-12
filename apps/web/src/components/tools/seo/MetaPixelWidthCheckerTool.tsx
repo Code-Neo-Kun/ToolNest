@@ -30,23 +30,6 @@ export function MetaPixelWidthCheckerTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Enter your title and meta description.",
-        "Check the pixel width for search snippet display.",
-        "Copy the result once lengths are within the recommended range.",
-      ]}
-      faqs={[
-        {
-          question: "Why measure pixel width?",
-          answer:
-            "Search engines truncate titles and descriptions based on pixel width, not character count.",
-        },
-        {
-          question: "What are the recommended widths?",
-          answer:
-            "Around 600px for titles and 920px for descriptions in Google search snippets.",
-        },
-      ]}
     >
       <div className="grid gap-6 lg:grid-cols-2">
         <div className="space-y-4">

@@ -54,26 +54,6 @@ export function QrGeneratorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Enter a URL, text, phone number, or any content.",
-        "Customize the size and colors.",
-        "The QR code generates automatically.",
-        "Download the QR code as PNG.",
-      ]}
-      faqs={[
-        {
-          question: "What can I encode in a QR code?",
-          answer: "URLs, plain text, phone numbers (tel:+1234567890), email addresses (mailto:), WiFi credentials, vCards, and more.",
-        },
-        {
-          question: "How large should the QR code be for printing?",
-          answer: "For print, use at least 300×300px. For large posters, use 500px or more. The QR code should be at least 1cm² when printed.",
-        },
-        {
-          question: "Are QR codes free to use commercially?",
-          answer: "Yes, standard QR codes are an open format. This generator is also free for commercial use.",
-        },
-      ]}
     >
       <div className="grid gap-6 md:grid-cols-2">
         <div className="space-y-4">

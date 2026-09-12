@@ -47,21 +47,6 @@ export function LoremIpsumTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Choose between paragraphs, sentences, or words.",
-        "Set the count and click Generate.",
-        "Copy the generated text.",
-      ]}
-      faqs={[
-        {
-          question: "What is Lorem Ipsum?",
-          answer: "Lorem Ipsum is placeholder text used in design and publishing since the 1500s. It simulates real text without distracting with readable content.",
-        },
-        {
-          question: "Is this the same as the standard Lorem Ipsum?",
-          answer: "It uses the same word pool but is randomly generated, so each generation is unique.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <div className="flex flex-col sm:flex-row gap-3">

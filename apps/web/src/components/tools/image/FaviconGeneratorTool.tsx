@@ -122,23 +122,6 @@ export function FaviconGeneratorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload an image file to create favicon assets.",
-        "Generate a set of standard icon sizes and a manifest snippet.",
-        "Download the package and add the manifest to your site.",
-      ]}
-      faqs={[
-        {
-          question: "What sizes are generated?",
-          answer:
-            "This tool generates 16x16 through 512x512 PNG icons plus a favicon.ico file and manifest snippet.",
-        },
-        {
-          question: "Can I use this for PWAs?",
-          answer:
-            "Yes. The manifest snippet includes icons suitable for progressive web apps.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <FileUploader

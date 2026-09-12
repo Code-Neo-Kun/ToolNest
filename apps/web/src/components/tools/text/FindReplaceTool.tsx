@@ -28,23 +28,6 @@ export function FindReplaceTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Paste your text in the editor.",
-        "Enter the search string and replacement text.",
-        "Switch on regex to use regular expressions.",
-      ]}
-      faqs={[
-        {
-          question: "How does regex mode work?",
-          answer:
-            "Regex mode treats your search string as a regular expression and replaces all matches.",
-        },
-        {
-          question: "Can I cancel find and replace?",
-          answer:
-            "The original text is preserved until you copy or overwrite the result.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <label className="block text-sm text-slate-600 dark:text-slate-300">

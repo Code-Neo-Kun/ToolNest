@@ -82,34 +82,6 @@ export function BackgroundRemoverTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload a JPG or PNG photo — portraits and product shots work best.",
-        "Click Remove Background — the AI runs in your browser, nothing is uploaded.",
-        "The first run downloads the AI model (~40 MB) and caches it.",
-        "Preview the transparent result and download the PNG.",
-      ]}
-      faqs={[
-        {
-          question: "Is my image uploaded to a server?",
-          answer:
-            "No. The AI model (ONNX Runtime + WebAssembly) runs entirely in your browser. Your image never leaves your device.",
-        },
-        {
-          question: "Why does the first run take longer?",
-          answer:
-            "The AI model (~40 MB) is downloaded once and cached by your browser. Subsequent runs on the same device are much faster.",
-        },
-        {
-          question: "What image formats are supported?",
-          answer:
-            "JPG, PNG, and WebP as input. Output is always a PNG with a transparent background.",
-        },
-        {
-          question: "My image is too large — what should I do?",
-          answer:
-            "For best performance keep images under 4 megapixels (e.g. 2000×2000 px). Use the Image Resizer tool to scale down first.",
-        },
-      ]}
     >
       <div className="space-y-5">
         <FileUploader

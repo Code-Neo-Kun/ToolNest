@@ -128,27 +128,6 @@ export function PdfOrganizeTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload a PDF file.",
-        "Drag pages to reorder them. Click the rotate icon to rotate a page by 90°. Click the trash icon to delete a page.",
-        "Click Save & Download to get the reorganised PDF.",
-      ]}
-      faqs={[
-        {
-          question: "Can I undo changes?",
-          answer:
-            "Re-upload the file to start over — the original is never modified.",
-        },
-        {
-          question: "How many pages can I reorder?",
-          answer:
-            "There's no hard limit. Very large PDFs (500+ pages) may be slow to render in the browser.",
-        },
-        {
-          question: "Can I both reorder and rotate on the same pass?",
-          answer: "Yes — all changes (order, rotation, deletions) are applied together when you download.",
-        },
-      ]}
     >
       <FileUploader
         accept="application/pdf"

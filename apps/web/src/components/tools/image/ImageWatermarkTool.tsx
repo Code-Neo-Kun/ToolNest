@@ -205,33 +205,6 @@ export function ImageWatermarkTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload a JPG, PNG, or WebP image.",
-        "Type your watermark text and adjust font size, opacity, color, and position.",
-        "Click Apply Watermark to preview the result.",
-        "Download the watermarked image.",
-      ]}
-      faqs={[
-        {
-          question: "What image formats are supported?",
-          answer: "JPG, PNG, and WebP. The output preserves the original format.",
-        },
-        {
-          question: "Is my image uploaded to a server?",
-          answer:
-            "No — everything runs in your browser on a Canvas element. Nothing leaves your device.",
-        },
-        {
-          question: "The watermark is hard to see. What should I do?",
-          answer:
-            "Try white (#ffffff) text on dark images or dark (#000000) on light ones. Increase opacity or font size for more visibility.",
-        },
-        {
-          question: "Will the watermark reduce image quality?",
-          answer:
-            "The image is re-encoded at 95% quality. For lossless results, use PNG as the source format.",
-        },
-      ]}
     >
       <div className="space-y-5">
         <FileUploader

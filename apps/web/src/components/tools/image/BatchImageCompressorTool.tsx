@@ -117,30 +117,6 @@ export function BatchImageCompressorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload multiple JPG, PNG, or WebP images at once.",
-        "Adjust the quality slider.",
-        "Click Compress All — each file is processed in sequence.",
-        "Download individual files or all as a ZIP.",
-      ]}
-      faqs={[
-        {
-          question: "Are my images uploaded to a server?",
-          answer: "No. All compression runs in your browser using WebAssembly. Nothing leaves your device.",
-        },
-        {
-          question: "How many images can I compress at once?",
-          answer: "There is no hard limit. Very large batches (50+ files) may be slow depending on your device.",
-        },
-        {
-          question: "Can I download all files at once?",
-          answer: "Yes — click Download All to get a ZIP archive of all compressed images.",
-        },
-        {
-          question: "What formats are supported?",
-          answer: "JPG, PNG, and WebP are supported as both input and output.",
-        },
-      ]}
     >
       <div className="space-y-5">
         <FileUploader

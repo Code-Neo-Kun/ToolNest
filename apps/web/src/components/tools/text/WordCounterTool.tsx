@@ -30,21 +30,6 @@ export function WordCounterTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Type or paste your text in the input area.",
-        "Stats update in real time as you type.",
-        "Use for blog posts, essays, social media copy, and more.",
-      ]}
-      faqs={[
-        {
-          question: "How is reading time calculated?",
-          answer: "Based on the average adult reading speed of 200 words per minute.",
-        },
-        {
-          question: "Is there a character limit?",
-          answer: "No limit. The counter works with any length of text.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <textarea

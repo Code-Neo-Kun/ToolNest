@@ -263,6 +263,23 @@ const TOOL_LOADERS: Record<string, () => Promise<ToolComponent>> = {
     import("@/components/tools/pdf/PdfOrganizeTool").then(
       (mod) => mod.PdfOrganizeTool,
     ),
+  // ── New tools ─────────────────────────────────────────────────────────────
+  "@/components/tools/developer/JwtDecoderTool": () =>
+    import("@/components/tools/developer/JwtDecoderTool").then(
+      (mod) => mod.JwtDecoderTool,
+    ),
+  "@/components/tools/developer/RegexTesterTool": () =>
+    import("@/components/tools/developer/RegexTesterTool").then(
+      (mod) => mod.RegexTesterTool,
+    ),
+  "@/components/tools/developer/TimestampConverterTool": () =>
+    import("@/components/tools/developer/TimestampConverterTool").then(
+      (mod) => mod.TimestampConverterTool,
+    ),
+  "@/components/tools/finance/SipCalculatorTool": () =>
+    import("@/components/tools/finance/SipCalculatorTool").then(
+      (mod) => mod.SipCalculatorTool,
+    ),
 };
 
 export default function ToolRenderer({ componentPath }: ToolRendererProps) {

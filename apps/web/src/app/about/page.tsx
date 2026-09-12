@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { Globe, Heart, Coffee, Wrench, Zap, Shield, Code2 } from "lucide-react";
 import { UpiCopyButton } from "@/components/ui/UpiCopyButton";
@@ -139,8 +140,15 @@ export default function AboutPage() {
     <div className="mx-auto max-w-3xl px-4 py-14 sm:px-6">
       {/* Hero */}
       <div className="mb-14 text-center">
-        <div className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 text-4xl shadow-lg select-none">
-          👨‍💻
+        <div className="mx-auto mb-6 h-24 w-24 overflow-hidden rounded-full ring-4 ring-indigo-200 dark:ring-indigo-700 shadow-lg">
+          <Image
+            src="/uddhav-neo.jpeg"
+            alt="Uddhav Shrimali"
+            width={96}
+            height={96}
+            className="h-full w-full object-cover object-top"
+            priority
+          />
         </div>
         <h1 className="text-4xl font-extrabold text-slate-900 dark:text-white">
           Hi, I&apos;m Uddhav 👋

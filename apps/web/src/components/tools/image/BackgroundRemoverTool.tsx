@@ -28,20 +28,60 @@ export function BackgroundRemoverTool() {
     setSrcUrl(URL.createObjectURL(f));
   };
 
+  /**
+   * Decode the file through a canvas and re-encode as PNG.
+   * This normalises exotic JPEGs (CMYK, progressive, odd sub-sampling)
+   * into a plain RGBA bitmap that the ONNX model can always read.
+   */
+  const normaliseImage = async (src: File): Promise<Blob> => {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      const url = URL.createObjectURL(src);
+      img.onload = () => {
+        URL.revokeObjectURL(url);
+        // Cap at 2048 px on the longest side to stay within model memory limits
+        const MAX = 2048;
+        let { width, height } = img;
+        if (width > MAX || height > MAX) {
+          if (width >= height) { height = Math.round(height * MAX / width); width = MAX; }
+          else { width = Math.round(width * MAX / height); height = MAX; }
+        }
+        const canvas = document.createElement("canvas");
+        canvas.width = width;
+        canvas.height = height;
+        const ctx = canvas.getContext("2d");
+        if (!ctx) { reject(new Error("Canvas 2D context unavailable")); return; }
+        ctx.drawImage(img, 0, 0, width, height);
+        canvas.toBlob((blob) => {
+          if (blob) resolve(blob);
+          else reject(new Error("Canvas toBlob returned null"));
+        }, "image/png");
+      };
+      img.onerror = () => {
+        URL.revokeObjectURL(url);
+        reject(new Error("Could not decode image — the file may be corrupt or an unsupported format."));
+      };
+      img.src = url;
+    });
+  };
+
   const removeBackground = useCallback(async () => {
     if (!file) return;
     setLoading(true);
     setError(null);
-    setProgress("Loading AI model…");
+    setProgress("Preparing image…");
 
     try {
+      // Normalise the image first so the model always gets a clean PNG bitmap
+      const normalised = await normaliseImage(file);
+
       const { removeBackground: removeBg } = await import(
         "@imgly/background-removal"
       );
 
-      setProgress("Analysing image…");
+      setProgress("Loading AI model…");
 
-      const blob = await removeBg(file, {
+      const blob = await removeBg(normalised, {
         // Use the library's own CDN to serve WASM/ONNX assets.
         // This avoids the need to copy assets into /public manually
         // and is the officially recommended approach for Next.js apps.
@@ -49,7 +89,6 @@ export function BackgroundRemoverTool() {
         progress: (key: string, current: number, total: number) => {
           if (total > 0) {
             const pct = Math.round((current / total) * 100);
-            // Show human-readable step names
             const label =
               key.includes("fetch") ? "Downloading model"
               : key.includes("compute") ? "Processing"
@@ -65,8 +104,12 @@ export function BackgroundRemoverTool() {
       setProgress("");
     } catch (e) {
       console.error("Background removal error:", e);
+      const detail = e instanceof Error ? e.message : String(e);
+      const isNetwork = detail.toLowerCase().includes("fetch") || detail.toLowerCase().includes("network");
       setError(
-        "Background removal failed. This may happen with very large images or unsupported formats. Try resizing the image below 4 MP first.",
+        isNetwork
+          ? `Model download failed — check your internet connection and try again. (${detail})`
+          : `Background removal failed: ${detail}`,
       );
     } finally {
       setLoading(false);

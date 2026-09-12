@@ -82,10 +82,12 @@ export function BackgroundRemoverTool() {
       setProgress("Loading AI model…");
 
       const blob = await removeBg(normalised, {
-        // Use the library's own CDN to serve WASM/ONNX assets.
-        // This avoids the need to copy assets into /public manually
-        // and is the officially recommended approach for Next.js apps.
-        publicPath: `https://unpkg.com/@imgly/background-removal@1.4.5/dist/`,
+        // The JS bundle ships on unpkg but the WASM + ONNX model assets
+        // are hosted on IMG.LY's own CDN under the separate
+        // @imgly/background-removal-data package. Using unpkg for publicPath
+        // returns an empty resources.json ({}) which causes the
+        // "Resource /models/medium not found" error.
+        publicPath: `https://staticimgly.com/@imgly/background-removal-data/1.4.5/dist/`,
         progress: (key: string, current: number, total: number) => {
           if (total > 0) {
             const pct = Math.round((current / total) * 100);

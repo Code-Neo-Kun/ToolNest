@@ -69,23 +69,6 @@ export function PdfExtractPagesTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload a PDF file.",
-        "Click to select the pages you want to keep.",
-        "Click Extract Pages — the selected pages download as a new PDF.",
-      ]}
-      faqs={[
-        {
-          question: "How is this different from Split PDF?",
-          answer:
-            "Split PDF divides a PDF into ranges (multiple output files). Extract Pages lets you cherry-pick any pages and combines them into one output file.",
-        },
-        {
-          question: "Is the original file modified?",
-          answer:
-            "No. The original file on your device is never touched.",
-        },
-      ]}
     >
       <FileUploader
         accept="application/pdf"

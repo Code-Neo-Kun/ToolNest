@@ -33,23 +33,6 @@ export function SemverComparatorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Enter two semantic version strings.",
-        "Compare which release is newer.",
-        "Use the result to validate version ordering.",
-      ]}
-      faqs={[
-        {
-          question: "How does semantic versioning work?",
-          answer:
-            "Semver uses MAJOR.MINOR.PATCH, where higher numbers represent newer releases.",
-        },
-        {
-          question: "Can this compare prereleases?",
-          answer:
-            "This basic comparator compares numeric segments and ignores prerelease metadata.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <div className="grid gap-4 sm:grid-cols-2">

@@ -46,23 +46,6 @@ export function CsvJsonConverterTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Paste CSV or JSON input.",
-        "Switch conversion direction.",
-        "Copy the converted output for your workflow.",
-      ]}
-      faqs={[
-        {
-          question: "What CSV formats are supported?",
-          answer:
-            "The tool supports comma-delimited CSV with headers and skips empty lines.",
-        },
-        {
-          question: "Does JSON need to be an array?",
-          answer:
-            "Yes. JSON should be an array of objects for conversion to CSV.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <div className="grid gap-2 sm:grid-cols-2">

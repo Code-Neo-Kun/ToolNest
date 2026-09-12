@@ -20,23 +20,6 @@ export function UserAgentParserTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Paste a user agent string.",
-        "Review browser, OS, and device details.",
-        "Copy the parsed result for debugging or support.",
-      ]}
-      faqs={[
-        {
-          question: "What is a user agent string?",
-          answer:
-            "It is a browser-provided string used to identify the browser, OS, and device during web requests.",
-        },
-        {
-          question: "Is this accurate for all browsers?",
-          answer:
-            "It parses the reported string, but some browsers may use generic or custom user agent formats.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <label className="block text-sm text-slate-600 dark:text-slate-300">

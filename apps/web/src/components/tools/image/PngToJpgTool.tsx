@@ -44,22 +44,6 @@ export function PngToJpgTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload a PNG image.",
-        "Adjust the quality slider if needed.",
-        "Click Convert to JPG.",
-        "Download the resulting JPG file.",
-      ]}
-      faqs={[
-        {
-          question: "Will transparent areas be preserved?",
-          answer: "No. JPG does not support transparency. Transparent pixels will be filled with white background.",
-        },
-        {
-          question: "What quality should I use?",
-          answer: "90–95% gives excellent quality with significant size reduction. 70–80% is good for web use.",
-        },
-      ]}
     >
       <canvas ref={canvasRef} className="hidden" />
       <FileUploader

@@ -52,23 +52,6 @@ export function WebpConverterTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload an image file.",
-        "Convert it to the WebP format.",
-        "Download the optimized output file.",
-      ]}
-      faqs={[
-        {
-          question: "What formats can I convert?",
-          answer:
-            "JPG, PNG, and other browser-supported image files can be converted to WebP.",
-        },
-        {
-          question: "Will the image quality change?",
-          answer:
-            "The tool converts using browser canvas; the output is optimized but visual quality is preserved.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <FileUploader

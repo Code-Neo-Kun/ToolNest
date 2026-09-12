@@ -39,21 +39,6 @@ export function PercentageCalculatorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Use the calculator that fits your need.",
-        "Enter your values and the result appears instantly.",
-        "Copy the result with the copy button.",
-      ]}
-      faqs={[
-        {
-          question: "How do I calculate a percentage of a number?",
-          answer: "Multiply the number by the percentage then divide by 100. For example, 20% of 150 = (20 × 150) ÷ 100 = 30.",
-        },
-        {
-          question: "How do I calculate percentage change?",
-          answer: "Percentage change = ((New - Old) ÷ Old) × 100. A positive result is an increase, negative is a decrease.",
-        },
-      ]}
     >
       <div className="space-y-6">
         {/* C1 */}

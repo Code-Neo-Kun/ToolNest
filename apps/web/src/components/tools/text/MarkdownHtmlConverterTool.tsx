@@ -28,23 +28,6 @@ export function MarkdownHtmlConverterTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Paste Markdown or HTML into the editor.",
-        "Choose the conversion direction.",
-        "Copy the generated output for your project.",
-      ]}
-      faqs={[
-        {
-          question: "Can this convert complex Markdown?",
-          answer:
-            "It supports common Markdown elements like headings, lists, links, images, and code blocks.",
-        },
-        {
-          question: "Does it preserve HTML formatting?",
-          answer:
-            "Yes, HTML is converted back to Markdown while preserving structure as much as possible.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <div className="grid gap-2 sm:grid-cols-2">

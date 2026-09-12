@@ -28,21 +28,6 @@ export function ImageToBase64Tool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload any image file.",
-        "Copy the Base64 string or the full data URL.",
-        "Paste into your HTML, CSS, or code as needed.",
-      ]}
-      faqs={[
-        {
-          question: "What is Base64 encoding?",
-          answer: "Base64 converts binary data (like images) into an ASCII string, which can be embedded directly in HTML or CSS without a separate file request.",
-        },
-        {
-          question: "When should I embed images as Base64?",
-          answer: "For small icons and logos where avoiding extra HTTP requests matters more than file size. Large images should stay as separate files.",
-        },
-      ]}
     >
       <FileUploader
         accept="image/*"

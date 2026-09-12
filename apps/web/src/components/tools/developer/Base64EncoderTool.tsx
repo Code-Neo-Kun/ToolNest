@@ -68,29 +68,6 @@ export function Base64EncoderTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Select Encode or Decode mode.",
-        "Paste your text in the input area.",
-        "Click the button to process.",
-        "Copy the result.",
-      ]}
-      faqs={[
-        {
-          question: "What is Base64?",
-          answer:
-            "Base64 is an encoding scheme that represents binary data as ASCII text. It's commonly used to embed images in HTML/CSS, transmit data in URLs, and store binary data as text.",
-        },
-        {
-          question: "Is Base64 encryption?",
-          answer:
-            "No. Base64 is encoding, not encryption. It's easily reversible and provides no security.",
-        },
-        {
-          question: "Does this support Unicode?",
-          answer:
-            "Yes. The encoder handles UTF-8 text including emojis and non-Latin characters.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <div className="flex rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden w-fit">

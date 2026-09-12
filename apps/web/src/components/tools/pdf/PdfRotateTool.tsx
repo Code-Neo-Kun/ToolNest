@@ -83,24 +83,6 @@ export function PdfRotateTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload a PDF file.",
-        "Choose a rotation angle.",
-        "Select whether to rotate all pages or pick individual ones.",
-        "Click Rotate PDF to download.",
-      ]}
-      faqs={[
-        {
-          question: "Can I rotate only some pages?",
-          answer:
-            'Yes — choose "Selected pages" and click the page numbers you want to rotate.',
-        },
-        {
-          question: "Will the rotation be permanent?",
-          answer:
-            "It's permanent in the downloaded file, but your original file is never modified.",
-        },
-      ]}
     >
       <FileUploader
         accept="application/pdf"

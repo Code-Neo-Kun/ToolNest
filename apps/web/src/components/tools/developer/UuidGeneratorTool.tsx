@@ -35,28 +35,6 @@ export function UuidGeneratorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Set how many UUIDs you want to generate.",
-        "Click Generate.",
-        "Copy individual UUIDs or all at once.",
-      ]}
-      faqs={[
-        {
-          question: "What is a UUID?",
-          answer:
-            "A UUID (Universally Unique Identifier) is a 128-bit label used to uniquely identify information in software systems. Version 4 UUIDs are randomly generated.",
-        },
-        {
-          question: "Are these UUIDs cryptographically random?",
-          answer:
-            "Yes, this generator uses the browser's crypto.randomUUID() API which is cryptographically secure.",
-        },
-        {
-          question: "What is the difference between UUID and GUID?",
-          answer:
-            "They are the same thing. GUID (Globally Unique Identifier) is Microsoft's term for UUID.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <div className="rounded-3xl border border-slate-200 bg-slate-50 p-4 text-sm text-slate-600 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-300">

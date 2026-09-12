@@ -58,25 +58,6 @@ ${form.twitterHandle ? `<meta property="twitter:creator" content="${escapeHtml(f
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Fill in your page title, description, and other details.",
-        "The meta tags are generated in real time.",
-        "Copy and paste them into your HTML <head> section.",
-      ]}
-      faqs={[
-        {
-          question: "What is the ideal meta description length?",
-          answer: "Google typically shows 150–160 characters. Keep descriptions between 120–160 characters for best results.",
-        },
-        {
-          question: "What is the ideal title length?",
-          answer: "Aim for 50–60 characters. Google truncates titles that are too long in search results.",
-        },
-        {
-          question: "What are Open Graph tags?",
-          answer: "Open Graph tags control how your page appears when shared on social media platforms like Facebook, LinkedIn, and Slack.",
-        },
-      ]}
     >
       <div className="grid gap-6 md:grid-cols-2">
         {/* Form */}

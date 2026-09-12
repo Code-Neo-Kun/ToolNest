@@ -30,22 +30,6 @@ export function RoiCalculatorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Enter your investment cost and final value.",
-        "See ROI as a percentage and total profit/loss.",
-        "Copy results for your finance notes.",
-      ]}
-      faqs={[
-        {
-          question: "What is ROI?",
-          answer:
-            "ROI shows how much profit or loss you made relative to your investment.",
-        },
-        {
-          question: "How is ROI calculated?",
-          answer: "ROI = (Current Value - Cost) ÷ Cost × 100.",
-        },
-      ]}
     >
       <div className="grid gap-6 lg:grid-cols-2">
         <label className="block text-sm text-slate-600 dark:text-slate-300">

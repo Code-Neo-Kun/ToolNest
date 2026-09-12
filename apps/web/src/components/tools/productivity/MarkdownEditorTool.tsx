@@ -90,34 +90,6 @@ export function MarkdownEditorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Type or paste your Markdown in the editor pane.",
-        "The preview updates live as you type.",
-        "Use the toolbar buttons to clean formatting, copy, or download.",
-        "Switch to Preview-only mode on mobile for a distraction-free read.",
-      ]}
-      faqs={[
-        {
-          question: "Is my content sent to a server?",
-          answer:
-            "No. Everything runs in your browser. Nothing is uploaded anywhere.",
-        },
-        {
-          question: "What Markdown syntax is supported?",
-          answer:
-            "CommonMark: headings, bold, italic, code, lists, blockquotes, links, images, tables, and fenced code blocks.",
-        },
-        {
-          question: "Can I export my document?",
-          answer:
-            "Yes — download as .md (Markdown source) or .html (rendered HTML page).",
-        },
-        {
-          question: "Does it auto-save?",
-          answer:
-            "There is no server-side saving, but your browser session keeps the content while the tab stays open.",
-        },
-      ]}
     >
       {/* Toolbar */}
       <div className="flex flex-wrap items-center justify-between gap-2 mb-4">

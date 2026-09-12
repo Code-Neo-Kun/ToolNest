@@ -14,21 +14,6 @@ export function SlugGeneratorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Type any text, title, or phrase in the input.",
-        "The URL-friendly slug is generated instantly.",
-        "Copy the slug for use in your CMS, URL, or file name.",
-      ]}
-      faqs={[
-        {
-          question: "What is a URL slug?",
-          answer: "A slug is the URL-friendly version of a string, using only lowercase letters, numbers, and hyphens. Example: 'Hello World!' → 'hello-world'.",
-        },
-        {
-          question: "Are special characters removed?",
-          answer: "Yes. Accented characters, punctuation, and special symbols are removed. Spaces become hyphens.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <div>

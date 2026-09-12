@@ -79,22 +79,6 @@ export function ImageResizerTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload your image.",
-        "Set the desired width and height in pixels.",
-        "Toggle 'Keep Aspect Ratio' to prevent distortion.",
-        "Click Resize and download the result.",
-      ]}
-      faqs={[
-        {
-          question: "Does resizing happen in the browser?",
-          answer: "Yes, everything runs locally using the Canvas API. No files are sent to any server.",
-        },
-        {
-          question: "Can I upscale an image?",
-          answer: "Yes, but upscaling increases file size and may reduce sharpness since no extra detail is added.",
-        },
-      ]}
     >
       <canvas ref={canvasRef} className="hidden" />
       <FileUploader

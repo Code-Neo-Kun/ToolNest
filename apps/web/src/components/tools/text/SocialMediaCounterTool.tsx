@@ -25,23 +25,6 @@ export function SocialMediaCounterTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Paste your social caption or post text.",
-        "See live character and word counts.",
-        "Use the limits reference to stay within platform rules.",
-      ]}
-      faqs={[
-        {
-          question: "Why is character count important?",
-          answer:
-            "Different platforms have different limits for posts, captions, and comments.",
-        },
-        {
-          question: "Does this tool count spaces?",
-          answer:
-            "Yes. It counts every character, including spaces and punctuation.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <textarea

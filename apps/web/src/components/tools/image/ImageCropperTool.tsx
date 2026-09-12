@@ -61,23 +61,6 @@ export function ImageCropperTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload an image to crop.",
-        "Set the crop coordinates and square size (width = height).",
-        "Generate the cropped image and download it.",
-      ]}
-      faqs={[
-        {
-          question: "Can I crop any image size?",
-          answer:
-            "Yes. The tool uses browser canvas resizing and works with any uploaded image.",
-        },
-        {
-          question: "What output formats are supported?",
-          answer:
-            "The cropped image is exported in the same format as the original file.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <FileUploader

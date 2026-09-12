@@ -60,21 +60,6 @@ export function ColorPickerTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Use the color picker or type a HEX code.",
-        "Copy the color in HEX, RGB, or HSL format.",
-        "Click any swatch for quick color selection.",
-      ]}
-      faqs={[
-        {
-          question: "What is the difference between HEX, RGB, and HSL?",
-          answer: "HEX is a 6-digit hexadecimal code common in CSS. RGB defines colors by red, green, and blue intensity (0–255). HSL uses hue (0–360°), saturation, and lightness for a more intuitive model.",
-        },
-        {
-          question: "Which format should I use in CSS?",
-          answer: "All three work in CSS. HSL is great for creating color variations (lighten/darken). HEX is most common in design tools.",
-        },
-      ]}
     >
       <div className="space-y-6">
         {/* Color picker + preview */}

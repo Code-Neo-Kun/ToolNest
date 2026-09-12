@@ -17,23 +17,6 @@ export function TextDiffCheckerTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Paste the first text block in the left editor.",
-        "Paste the second text block in the right editor.",
-        "Review the highlighted differences below.",
-      ]}
-      faqs={[
-        {
-          question: "What is being compared?",
-          answer:
-            "The tool compares words and whitespace between two text blocks, highlighting additions and removals.",
-        },
-        {
-          question: "Can I use it for code?",
-          answer:
-            "Yes. It works with any plain text, including code snippets and prose.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <div className="grid gap-4 lg:grid-cols-2">

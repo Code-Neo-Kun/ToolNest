@@ -81,23 +81,6 @@ export function ColorPaletteExtractorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload an image to inspect its main colors.",
-        "Generate a palette from the image.",
-        "Copy the hex values to use in your design.",
-      ]}
-      faqs={[
-        {
-          question: "How many palette colors are shown?",
-          answer:
-            "The tool extracts the top 6 most common colors from the image.",
-        },
-        {
-          question: "Can I use these colors in CSS?",
-          answer:
-            "Yes. Each extracted color is shown with its hex code for easy copying.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <FileUploader

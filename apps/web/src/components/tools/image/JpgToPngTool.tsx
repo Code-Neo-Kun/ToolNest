@@ -36,21 +36,6 @@ export function JpgToPngTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload a JPG or JPEG image.",
-        "Click Convert to PNG.",
-        "Download the resulting PNG file.",
-      ]}
-      faqs={[
-        {
-          question: "Will the image quality improve when converting to PNG?",
-          answer: "No. Converting from JPG to PNG won't recover quality lost during JPG compression, but PNG is lossless so no additional quality is lost.",
-        },
-        {
-          question: "Why convert JPG to PNG?",
-          answer: "PNG supports transparency and lossless compression, making it better for logos, icons, and images that need editing.",
-        },
-      ]}
     >
       <canvas ref={canvasRef} className="hidden" />
       <FileUploader

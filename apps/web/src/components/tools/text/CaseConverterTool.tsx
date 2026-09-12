@@ -65,21 +65,6 @@ export function CaseConverterTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Type or paste your text in the input box.",
-        "All case conversions appear below automatically.",
-        "Click Copy next to any result.",
-      ]}
-      faqs={[
-        {
-          question: "What is camelCase?",
-          answer: "camelCase writes compound words with no spaces and each word capitalized except the first, like: helloWorldExample.",
-        },
-        {
-          question: "What is snake_case?",
-          answer: "snake_case uses underscores between words in lowercase, commonly used in Python variable names and file names.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <textarea

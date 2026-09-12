@@ -37,23 +37,6 @@ export function CompoundInterestCalculatorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Enter the principal, annual rate, years, and compounding frequency.",
-        "The calculator shows the final amount and total interest earned.",
-        "Copy any result to use in your investment planning.",
-      ]}
-      faqs={[
-        {
-          question: "What is compound interest?",
-          answer:
-            "Compound interest is interest earned on the original amount plus the interest reinvested each period.",
-        },
-        {
-          question: "What is compounding frequency?",
-          answer:
-            "Compounding frequency is how often interest is added to the balance each year.",
-        },
-      ]}
     >
       <div className="grid gap-6 lg:grid-cols-2">
         <label className="block text-sm text-slate-600 dark:text-slate-300">

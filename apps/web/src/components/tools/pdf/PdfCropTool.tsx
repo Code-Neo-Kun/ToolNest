@@ -75,28 +75,6 @@ export function PdfCropTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload a PDF file.",
-        "Enter how many points to remove from each edge (1 pt ≈ 0.35 mm).",
-        "Click Crop PDF to download.",
-      ]}
-      faqs={[
-        {
-          question: "What unit are the margin values in?",
-          answer:
-            "PDF points (pt). 72pt = 1 inch. A typical A4 page is 595×842pt.",
-        },
-        {
-          question: "Does this affect all pages?",
-          answer:
-            "Yes — the same crop box is applied to every page.",
-        },
-        {
-          question: "Will it reduce file size?",
-          answer:
-            "The crop box hides content outside the new boundaries but doesn't remove it — so file size stays the same.",
-        },
-      ]}
     >
       <FileUploader
         accept="application/pdf"

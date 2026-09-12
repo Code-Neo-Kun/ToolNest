@@ -67,23 +67,6 @@ export function WorldClockTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Pick a source and target timezone.",
-        "View the current clocks in both zones.",
-        "Use the result to coordinate meetings across regions.",
-      ]}
-      faqs={[
-        {
-          question: "How accurate is this?",
-          answer:
-            "It uses the browser's time and the Intl timezone APIs for current local times.",
-        },
-        {
-          question: "Can I choose any timezone?",
-          answer:
-            "The tool includes common timezones, but you can expand the list in the source code if needed.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <div className="grid gap-4 sm:grid-cols-2">

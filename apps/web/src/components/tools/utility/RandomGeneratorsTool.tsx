@@ -55,23 +55,6 @@ export function RandomGeneratorsTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Generate random numbers, dice rolls, or random names.",
-        "Adjust parameters and click the action buttons.",
-        "Copy results for quick use in games or testing.",
-      ]}
-      faqs={[
-        {
-          question: "Can I customize the range?",
-          answer:
-            "Yes. Set the minimum and maximum values for the random number generator.",
-        },
-        {
-          question: "How many dice sides are supported?",
-          answer:
-            "You can roll any number of sides by entering a positive integer.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <div className="grid gap-4 sm:grid-cols-2">

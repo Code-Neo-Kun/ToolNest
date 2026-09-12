@@ -40,23 +40,6 @@ export function AgeDateDifferenceTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Choose a birth date and optional target date.",
-        "See the age or interval in years, months, and days.",
-        "Use the result for planning or milestone calculations.",
-      ]}
-      faqs={[
-        {
-          question: "What if the target date is in the future?",
-          answer:
-            "The tool calculates the interval between the two dates, even if the target date is later.",
-        },
-        {
-          question: "Does it account for leap years?",
-          answer:
-            "It calculates date differences using calendar months and days, not exact leap year day counts.",
-        },
-      ]}
     >
       <div className="grid gap-4 sm:grid-cols-2">
         <label className="block text-sm text-slate-600 dark:text-slate-300">

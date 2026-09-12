@@ -27,23 +27,6 @@ export function EmiCalculatorTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Enter the loan amount, annual interest rate, and duration.",
-        "The calculator shows your monthly EMI, total payable amount, and interest cost.",
-        "Copy any result using the copy buttons.",
-      ]}
-      faqs={[
-        {
-          question: "What does EMI mean?",
-          answer:
-            "EMI is the fixed monthly payment you make to repay a loan, including interest.",
-        },
-        {
-          question: "How is total interest calculated?",
-          answer:
-            "Total interest is the total amount paid over the loan term minus the original principal.",
-        },
-      ]}
     >
       <div className="grid gap-6 lg:grid-cols-3">
         <label className="block text-sm text-slate-600 dark:text-slate-300">

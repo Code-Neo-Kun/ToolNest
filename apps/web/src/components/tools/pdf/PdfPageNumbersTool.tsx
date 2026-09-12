@@ -102,23 +102,6 @@ export function PdfPageNumbersTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Upload a PDF file.",
-        "Choose the position, starting number, and font size.",
-        "Click Add Page Numbers to download the stamped PDF.",
-      ]}
-      faqs={[
-        {
-          question: "Can I start numbering from a number other than 1?",
-          answer:
-            "Yes — set the starting number in the options. Useful if this PDF continues from a previous document.",
-        },
-        {
-          question: "What font is used?",
-          answer:
-            "Helvetica, which is a standard built-in PDF font that works without embedding.",
-        },
-      ]}
     >
       <FileUploader
         accept="application/pdf"

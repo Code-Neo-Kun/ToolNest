@@ -50,24 +50,6 @@ export function UrlEncoderTool() {
   return (
     <ToolLayout
       tool={tool}
-      howToUse={[
-        "Choose Encode or Decode mode.",
-        "Paste your URL or encoded string.",
-        "Click the button to convert.",
-        "Copy the result.",
-      ]}
-      faqs={[
-        {
-          question: "What is URL encoding?",
-          answer:
-            "URL encoding (percent-encoding) converts characters that aren't allowed in URLs to a safe format. For example, spaces become %20 and & becomes %26.",
-        },
-        {
-          question: "When do I need to URL encode?",
-          answer:
-            "When passing parameters in query strings, embedding URLs in other URLs, or sending special characters in API requests.",
-        },
-      ]}
     >
       <div className="space-y-4">
         <div className="flex rounded-xl border border-slate-200 dark:border-slate-700 overflow-hidden w-fit">

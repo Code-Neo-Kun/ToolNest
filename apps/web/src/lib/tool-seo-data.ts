@@ -1247,4 +1247,105 @@ export const TOOL_SEO: Record<string, ToolSeoData> = {
     ],
   },
 
+  // ── New tools ──────────────────────────────────────────────────────────────
+
+  "jwt-decoder": {
+    metaTitle: "Free JWT Decoder — Decode JSON Web Tokens Online | ToolNest",
+    metaDescription: "Decode and inspect JWT header, payload, and expiry instantly — free, runs in your browser, nothing is sent to any server. No signup.",
+    h2: "Free Online JWT Decoder",
+    intro: "Decode any JSON Web Token and inspect its header, payload claims, and expiry status — entirely in your browser with no server upload and no account required.",
+    howToUse: [
+      "Paste your JWT into the input field.",
+      "The header and payload are decoded and displayed instantly.",
+      "Check the expiry badge to see if the token is still valid.",
+      "Copy any section as formatted JSON with the copy button.",
+    ],
+    whyUse: "Backend developers debug authentication flows by inspecting token claims without a dedicated API client. Frontend engineers verify token expiry before making protected requests. Security reviewers audit JWT contents for misconfigured claims.",
+    faqs: [
+      { question: "Is my token sent to a server?", answer: "No. Decoding is done entirely in your browser using standard atob() and JSON.parse(). Your token never leaves your device." },
+      { question: "Does this verify the signature?", answer: "No. Signature verification requires the secret key. This tool only decodes the header and payload, which are Base64URL encoded and not encrypted." },
+      { question: "What token formats are supported?", answer: "Standard three-part JWTs (header.payload.signature). Both HS256/RS256 and other algorithm tokens decode the same way." },
+      { question: "What does the expiry badge show?", answer: "If the payload contains an 'exp' claim (Unix timestamp), the badge shows whether the token has expired and by how much time." },
+    ],
+  },
+
+  "regex-tester": {
+    metaTitle: "Free Regex Tester — Test Regular Expressions Online | ToolNest",
+    metaDescription: "Test regular expressions with live match highlighting, group capture display, and find-and-replace. Free, runs in your browser. No signup.",
+    h2: "Free Online Regex Tester",
+    intro: "Write and test regular expressions with live match highlighting, capture group inspection, and a built-in replace mode — all running locally in your browser with no server required.",
+    howToUse: [
+      "Enter your regular expression in the pattern field.",
+      "Toggle flags (g, i, m, s) as needed.",
+      "Type or paste your test string — matches are highlighted in real time.",
+      "Switch to the Replace tab to preview a find-and-replace result.",
+    ],
+    whyUse: "Developers validate and debug regex patterns before embedding them in code. Data engineers test extraction patterns against sample CSV or log data. QA engineers build input-validation patterns for form fields.",
+    faqs: [
+      { question: "Does this send my data anywhere?", answer: "No. Matching runs entirely in your browser using the built-in JavaScript RegExp engine. Nothing is uploaded." },
+      { question: "What flags are supported?", answer: "g (global), i (case-insensitive), m (multiline), and s (dot-all). You can combine any number of flags." },
+      { question: "How do I use capture groups in the replace field?", answer: "Reference groups with $1, $2, etc. For example, pattern (\\w+)\\s(\\w+) with replacement $2 $1 swaps two words." },
+      { question: "Why does my pattern match infinitely?", answer: "Zero-length matches (e.g. a* on 'bbb') can produce many results. The tool caps matches at 500 to prevent browser freezing." },
+    ],
+  },
+
+  "timestamp-converter": {
+    metaTitle: "Free Timestamp Converter — Unix Epoch to Date Online | ToolNest",
+    metaDescription: "Convert Unix timestamps to human-readable dates and back — ISO 8601, UTC, local time, and more. Free, live clock, runs in browser. No signup.",
+    h2: "Free Online Unix Timestamp Converter",
+    intro: "Convert Unix timestamps to human-readable dates in multiple formats, or parse any date string back to an epoch — entirely in your browser with a live current-time display.",
+    howToUse: [
+      "Enter a Unix timestamp (seconds or milliseconds) or any date string.",
+      "All format conversions appear instantly in the table below.",
+      "Click 'Use now' to load the current Unix time.",
+      "Click any entry in the quick-reference panel to load a well-known timestamp.",
+    ],
+    whyUse: "Backend developers convert database epoch values to readable dates during debugging. API integrators check token expiry or log timestamps. Anyone troubleshooting time-zone bugs can compare UTC, ISO, and local formats side by side.",
+    faqs: [
+      { question: "How does the tool tell seconds from milliseconds?", answer: "Numbers with 10 or fewer digits are treated as Unix seconds. Numbers with 11+ digits are treated as milliseconds. You can always enter a full ISO string to avoid ambiguity." },
+      { question: "What date string formats are accepted?", answer: "Any format accepted by the JavaScript Date constructor — ISO 8601 (2024-06-10T12:00:00Z), RFC 2822, and most common locale formats." },
+      { question: "Is the live clock accurate?", answer: "It reads from your device's system clock and updates every second. Accuracy depends on your system time." },
+      { question: "What is the 2038 problem?", answer: "32-bit systems store Unix timestamps as signed integers, which overflow on 19 January 2038 at 03:14:07 UTC. 64-bit systems and modern software are not affected." },
+    ],
+  },
+
+  "word-counter": {
+    metaTitle: "Free Word Counter — Count Words & Characters Online | ToolNest",
+    metaDescription: "Count words, characters, sentences, paragraphs, and estimate reading time instantly. Free, no upload to server, no signup.",
+    h2: "Free Online Word Counter",
+    intro: "Paste or type any text and instantly see word count, character count, sentence count, paragraph count, and estimated reading time — all in your browser with nothing uploaded anywhere.",
+    howToUse: [
+      "Type or paste your text into the input area.",
+      "All stats update in real time as you type.",
+      "Use the Clear button to start fresh.",
+    ],
+    whyUse: "Writers check word counts for blog posts, essays, and social media copy. Students verify that assignments meet length requirements. SEO copywriters monitor keyword density alongside word volume.",
+    faqs: [
+      { question: "Is my text sent to a server?", answer: "No. All counting runs locally in your browser using JavaScript. Nothing is uploaded anywhere." },
+      { question: "How is reading time calculated?", answer: "Based on the average adult reading speed of 200 words per minute. The result is rounded up to the nearest minute." },
+      { question: "How are sentences counted?", answer: "The tool splits on . ! and ? characters followed by whitespace. Short fragments may be counted separately." },
+      { question: "Is there a character or word limit?", answer: "No limit. The counter handles texts of any length, though very large pastes may take a moment to process." },
+    ],
+  },
+
+  "sip-calculator": {
+    metaTitle: "Free SIP Calculator — Systematic Investment Plan Returns | ToolNest",
+    metaDescription: "Calculate SIP returns, total invested amount, and estimated wealth gain with a year-by-year growth chart. Free, no signup.",
+    h2: "Free Online SIP Calculator",
+    intro: "Calculate the future value of your Systematic Investment Plan — see your total invested amount, estimated returns, and a year-by-year growth chart, all computed instantly in your browser.",
+    howToUse: [
+      "Enter your monthly investment amount.",
+      "Enter the expected annual return rate (e.g. 12 for 12%).",
+      "Enter the investment duration in years.",
+      "Results and the growth chart update instantly.",
+    ],
+    whyUse: "Retail investors plan monthly mutual fund contributions and project long-term wealth. Financial advisors illustrate the power of compounding to clients. Anyone starting a savings habit can see how small monthly amounts grow significantly over time.",
+    faqs: [
+      { question: "What is a SIP?", answer: "A Systematic Investment Plan (SIP) lets you invest a fixed amount in a mutual fund at regular intervals (usually monthly), averaging out market volatility over time." },
+      { question: "How is the future value calculated?", answer: "Using the standard SIP formula: FV = P × ((1 + r)^n − 1) / r × (1 + r), where P is the monthly amount, r is the monthly rate, and n is the number of months." },
+      { question: "Is the return rate guaranteed?", answer: "No. The return rate is an assumption for planning purposes. Actual mutual fund returns vary with market conditions." },
+      { question: "What is a realistic expected return rate?", answer: "Indian equity mutual funds have historically delivered 10–14% CAGR over long periods. Debt funds typically return 6–8%. Use a conservative estimate for planning." },
+    ],
+  },
+
 };
